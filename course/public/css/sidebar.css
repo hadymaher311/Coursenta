@@ -1,0 +1,17 @@
+h2.brand {
+    text-align: center;
+    padding: 20px;
+    font-family: 'Courgette', cursive;
+}
+
+h2.brand span {
+    color: red;
+}
+
+.card-body {
+    padding: 0;
+}
+
+.card-header {
+    cursor: pointer;
+}

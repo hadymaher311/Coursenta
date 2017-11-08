@@ -1,0 +1,52 @@
+.navbar-brand {
+  font-weight: bold;
+  font-family: 'Raleway', sans-serif;
+}
+
+.links > a {
+  color: #222;
+  padding: 0 10px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .1rem;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.top-nav-collapse {
+  background-color: #c56bdb !important;
+}
+
+.navbar:not(.top-nav-collapse) {
+  background: transparent !important;
+}
+
+@media (max-width: 740px) {
+  .full-height,
+  .full-height body,
+  .full-height header,
+  .full-height header .view {
+      height: 700px;
+  }
+}
+
+.btn-rounded {
+  border-radius: 2.5rem;
+}
+
+.card-image {
+  background-size: cover;
+  background-position: 50% 50%;
+}
+
+.feature-title {
+  font-size: 3rem;
+}
+
+.avatar {
+  padding: 2rem;
+}
+
+.open-side {
+  cursor: pointer;
+}
