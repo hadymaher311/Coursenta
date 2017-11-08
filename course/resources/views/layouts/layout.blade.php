@@ -12,7 +12,7 @@
   <body>
 
     @if (Route::has('login'))
-      @if(true)
+      @auth
         @include('layouts.sidenav')
       @endauth
     @endif

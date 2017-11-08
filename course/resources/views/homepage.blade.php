@@ -23,8 +23,11 @@
                         <h5 class="mb-5">It comes with a lot of new features, easy to follow videos and images. Check it out now!</h5>
                       </li>
                       <li>
-                        <a class="btn btn-purple btn-rounded" href="{{ route('register') }}"><i class="fa fa-user left"></i> Sign up!</a>
-                        <a class="btn btn-outline-purple btn-rounded" href="{{ route('login') }}"><i class="fa fa-book left"></i> Login</a>
+                        @auth
+                        @else
+                          <a class="btn btn-purple btn-rounded" href="{{ route('register') }}"><i class="fa fa-user left"></i> Sign up!</a>
+                          <a class="btn btn-outline-purple btn-rounded" href="{{ route('login') }}"><i class="fa fa-book left"></i> Login</a>
+                        @endauth
                       </li>
                     </ul>
                 </div>
