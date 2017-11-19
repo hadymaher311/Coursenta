@@ -40,13 +40,9 @@
 }
 
 .feature-title {
-  font-size: 3rem;
+  font-size: 2.2rem;
 }
 
 .avatar {
   padding: 2rem;
-}
-
-.open-side {
-  cursor: pointer;
 }

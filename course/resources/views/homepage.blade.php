@@ -56,7 +56,7 @@
             <!--Grid column-->
             <div class="col-md-4 mb-r">
                 <i class="fa fa-building-o fa-5x red-text"></i>
-                <h5 class="feature-title">1000</h5>
+                <h5 class="feature-title">1000 <br>Room</h5>
                 <p class="grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores nam, aperiam minima assumenda deleniti hic.</p>
             </div>
             <!--Grid column-->
@@ -64,7 +64,7 @@
             <!--Grid column-->
             <div class="col-md-4 mb-r">
                 <i class="fa fa-book fa-5x cyan-text"></i>
-                <h5 class="feature-title">1000</h5>
+                <h5 class="feature-title">1000 <br>Course</h5>
                 <p class="grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores nam, aperiam minima assumenda deleniti hic.</p>
             </div>
             <!--Grid column-->
@@ -72,7 +72,7 @@
             <!--Grid column-->
             <div class="col-md-4 mb-r">
                 <i class="fa fa-user fa-5x orange-text"></i>
-                <h5 class="feature-title">1000</h5>
+                <h5 class="feature-title">1000 <br>Students</h5>
                 <p class="grey-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit maiores nam, aperiam minima assumenda deleniti hic.</p>
             </div>
             <!--Grid column-->
@@ -96,58 +96,58 @@
       <!--Grid row-->
       <div class="row">
 
-          <!--Grid column-->
-          <div class="col-md-12 mb-r">
-              <div class="card card-image" style="background-image: url({{ asset('/images/img3.jpg') }});">
-                  <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
-                      <div>
-                          <h6 class="purple-text"><i class="fa fa-plane"></i><strong> Travel</strong></h6>
-                          <h3 class="card-title py-3 font-bold"><strong>This is card title</strong></h3>
-                          <p class="pb-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
-                              optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos.
-                              Odit sed qui, dolorum!</p>
-                          <a class="btn btn-secondary btn-rounded"><i class="fa fa-clone left"></i> View project</a>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <!--Grid column-->
-
-          <!--Grid column-->
-          <div class="col-md-6 mb-r">
-              <div class="card card-image" style="background-image: url({{ asset('/images/img.jpg') }});">
-                  <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
-                      <div>
-                          <h6 class="pink-text"><i class="fa fa-pie-chart"></i><strong> Marketing</strong></h6>
-                          <h3 class="card-title py-3 font-bold"><strong>This is card title</strong></h3>
-                          <p class="pb-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
-                              optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos.
-                              Odit sed qui, dolorum!</p>
-                          <a class="btn btn-pink btn-rounded"><i class="fa fa-clone left"></i> View project</a>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <!--Grid column-->
-
-          <!--Grid column-->
-          <div class="col-md-6 mb-r">
-              <div class="card card-image" style="background-image: url({{ asset('/images/img3.jpg') }});">
-                  <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
-                      <div>
-                          <h6 class="green-text"><i class="fa fa-eye"></i><strong> Entertainment</strong></h6>
-                          <h3 class="card-title py-3 font-bold"><strong>This is card title</strong></h3>
-                          <p class="pb-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
-                              optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos.
-                              Odit sed qui, dolorum!</p>
-                          <a class="btn btn-success btn-rounded"><i class="fa fa-clone left"></i> View project</a>
-                      </div>
-                  </div>
-              </div>
-          </div>
+        <!--Grid column-->
+        <div class="col-md-12 mb-r">
+            <div class="card card-image" style="background-image: url('{{ asset('/images/img3.jpg') }}');">
+                <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+                    <div>
+                        <h6 class="purple-text"><i class="fa fa-plane"></i><strong> Travel</strong></h6>
+                        <h3 class="card-title py-3 font-bold"><strong>This is card title</strong></h3>
+                        <p class="pb-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
+                            optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos.
+                            Odit sed qui, dolorum!</p>
+                        <a class="btn btn-secondary btn-rounded"><i class="fa fa-clone left"></i> View project</a>
+                    </div>
+                </div>
+            </div>
         </div>
-          <!--Grid column-->
+        <!--Grid column-->
 
+        <!--Grid column-->
+        <div class="col-md-6 mb-r">
+            <div class="card card-image" style="background-image: url('{{ asset('/images/img.jpg') }}');">
+                <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+                    <div>
+                        <h6 class="pink-text"><i class="fa fa-pie-chart"></i><strong> Marketing</strong></h6>
+                        <h3 class="card-title py-3 font-bold"><strong>This is card title</strong></h3>
+                        <p class="pb-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
+                            optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos.
+                            Odit sed qui, dolorum!</p>
+                        <a class="btn btn-pink btn-rounded"><i class="fa fa-clone left"></i> View project</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Grid column-->
+
+        <!--Grid column-->
+        <div class="col-md-6 mb-r">
+            <div class="card card-image" style="background-image: url('{{ asset('/images/img3.jpg') }}');">
+                <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+                    <div>
+                        <h6 class="green-text"><i class="fa fa-eye"></i><strong> Entertainment</strong></h6>
+                        <h3 class="card-title py-3 font-bold"><strong>This is card title</strong></h3>
+                        <p class="pb-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
+                            optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos.
+                            Odit sed qui, dolorum!</p>
+                        <a class="btn btn-success btn-rounded"><i class="fa fa-clone left"></i> View project</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Grid column-->
+
+      </div>
       <!--Grid row-->
 
     </section>

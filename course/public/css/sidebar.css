@@ -4,8 +4,9 @@ h2.brand {
     font-family: 'Courgette', cursive;
 }
 
-h2.brand span {
-    color: red;
+.open-side {
+  cursor: pointer;
+  padding: 0.5rem;
 }
 
 .card-body {
