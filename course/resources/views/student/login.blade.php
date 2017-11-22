@@ -49,9 +49,12 @@
 					    " data-success="right">Password</label>
 					</div>
 					
-					<div class="md-form wow fadeInLeft" data-wow-delay="1.5s">
-                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> Remember Me
-                    </div>
+                    <div class="form-check wow fadeInLeft" data-wow-delay="1.5s">
+					    <label class="form-check-label">
+					      <input type="checkbox" class="form-check-input" {{ old('remember') ? 'checked' : '' }}>
+					      Remember Me
+					    </label>
+					  </div>
 
 					<a href="{{ route('password.request') }}" class="wow fadeInLeft" data-wow-delay="1.5s">Forget your password</a>
 
