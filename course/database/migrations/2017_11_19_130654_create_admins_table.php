@@ -18,7 +18,7 @@ class CreateAdminsTable extends Migration
             $table->string ('email',100)->unique();
             $table->string ('username',30)->unique();
             $table->string ('passward');
-            $table->string ('image');
+            $table->string ('image')->nullable();
             $table->string ('mobile_number',20)->nullable();
             $table->boolean('status')->default(1);
             $table->rememberToken();

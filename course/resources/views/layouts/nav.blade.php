@@ -5,7 +5,7 @@
 <!--Navbar-->
 <nav class="navbar navbar-expand-lg navbar-light fixed-top scrolling-navbar">
   <div class="container">
-    <a class="navbar-brand" href="{{ url('/') }}"><strong>Coursenta</strong></a>
+    <a class="navbar-brand" href="{{ url('/') }}"><strong><i class="fa fa-book fa-lg purple-text"></i>  Coursenta</strong></a>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent-7">
       <ul class="navbar-nav mr-auto">

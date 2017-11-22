@@ -19,11 +19,13 @@ class CreateStudentsTable extends Migration
             $table->string('email',100)->unique();
             $table->string('username',30)->unique();
             $table->string('password');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->string('mobile_number',20)->nullable();
             $table->string('school',50)->nullable();
             $table->string('address')->nullable();
             $table->date('date_of_birth')->nullable();
+            $table->boolean('status')->default(0);
+            $table->string('varify_token')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

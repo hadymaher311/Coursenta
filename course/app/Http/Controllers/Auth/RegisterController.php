@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Validator;
+use App\Student;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Mail;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
+use Session;
+use App\Mail\varifyEmail;
 
 class RegisterController extends Controller
 {
@@ -48,8 +52,9 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'name' => 'required|string|max:191',
+            'username' => 'required|string|max:30|unique:students',
+            'email' => 'required|string|email|max:100|unique:students',
             'password' => 'required|string|min:6|confirmed',
         ]);
     }
@@ -62,10 +67,35 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        Session::flash('status', 'Registered! go to your mailbox to activate your account');
+        $user = Student::create([
             'name' => $data['name'],
+            'username' => $data['username'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
+            'varify_token' => Str::random(40),
         ]);
+        $thisUser = Student::findOrFail($user->id);
+        $this->sendVarifyEmail($thisUser);
+        return $thisUser;
     }
+
+    public function sendVarifyEmail($thisUser)
+    {
+        Mail::to($thisUser->email)->send(new varifyEmail($thisUser));
+    }
+
+    public function varefied($email, $token)
+    {
+        $student = Student::where(['email' => $email, 'varify_token' => $token])->first();
+        if ($student) {
+            Student::where(['email' => $email, 'varify_token' => $token])->update(['status' => '1', 'varify_token' => NULL]);
+            Session::flash('status', 'Varified, Just login');
+            return redirect(route('login'));
+        }
+        else {
+            abort(404);
+        }
+    }
+
 }

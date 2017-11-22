@@ -25,8 +25,8 @@
                       <li>
                         @auth
                         @else
-                          <a class="btn btn-purple btn-rounded" href="{{ route('register') }}"><i class="fa fa-user left"></i> Sign up!</a>
-                          <a class="btn btn-outline-purple btn-rounded" href="{{ route('login') }}"><i class="fa fa-book left"></i> Login</a>
+                          <a class="btn btn-purple btn-rounded" href="{{ route('login') }}"><i class="fa fa-user left"></i> Login</a>
+                          <a class="btn btn-outline-purple btn-rounded" href="{{ route('register') }}"><i class="fa fa-book left"></i> Register!</a>
                         @endauth
                       </li>
                     </ul>

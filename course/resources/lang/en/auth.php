@@ -14,6 +14,9 @@ return [
     */
 
     'failed' => 'These credentials do not match our records.',
+    'username' => 'These Username do not match our records.',
+    'password' => 'Incorrect Password',
+    'status' => 'Validate Your Email, go for your mailbox',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 
 ];

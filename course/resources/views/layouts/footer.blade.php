@@ -9,3 +9,9 @@
   <script src="{{ asset('/js/sidebar.min.js') }}"></script>
   <script src="{{ asset('/js/sidebar.js') }}"></script>
   <script src="{{ asset('/js/jquery.nicescroll.min.js') }}"></script>
+  <script>
+  	$("body").niceScroll({cursorcolor:"#A028BF"});
+    $(".has-error input").removeClass('valid').addClass('invalid');
+    $('.has-error label').after().width($(this).width());
+    $('.has-error input[type="password"]').attr("autofocus", "autofocus");
+  </script>
