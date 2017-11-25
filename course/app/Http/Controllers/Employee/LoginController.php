@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Student;
+namespace App\Http\Controllers\Employee;
 
+use App\Employee;
 use App\Http\Controllers\Controller;
-use App\Student;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 
 class LoginController extends Controller
@@ -28,7 +29,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = 'employee/home';
 
     /**
      * Create a new controller instance.
@@ -37,7 +38,7 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('guest:employee')->except('logout');
     }
 
 
@@ -52,41 +53,27 @@ class LoginController extends Controller
         return [
             'username' => $request->username,
             'password' => $request->password,
-            'status' => '1',
         ];
     }
 
     /**
-     * Get the failed login response instance.
+     * Show the application's login form.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Symfony\Component\HttpFoundation\Response
-     *
-     * @throws ValidationException
+     * @return \Illuminate\Http\Response
      */
-    protected function sendFailedLoginResponse(Request $request)
+    public function showLoginForm()
     {
-        // throw ValidationException::withMessages([
-        //     $this->username() => [trans('auth.failed')],
-        // ]);
-        $student = Student::where('username', $request->username)->first();
-        if ( !$student ) {
-            throw ValidationException::withMessages([
-                $this->username() => [trans('auth.username')],
-            ]);
-        }
+        return view('employee.login');
+    }
 
-        if ( ! Hash::check($request->password, $student->password) ) {
-            throw ValidationException::withMessages([
-                'password' => [trans('auth.password')],
-            ]);
-        }
-
-        if ( ! (Hash::check($request->password, $student->password) && $student->status == '1' ) ) {
-            throw ValidationException::withMessages([
-                'status' => [trans('auth.status')],
-            ]);
-        }
+    /**
+     * Get the guard to be used during authentication.
+     *
+     * @return \Illuminate\Contracts\Auth\StatefulGuard
+     */
+    protected function guard()
+    {
+        return Auth::guard('employee');
     }
 
 }
