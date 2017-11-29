@@ -129,27 +129,9 @@ trait AuthenticatesUsers
      */
     protected function sendFailedLoginResponse(Request $request)
     {
-        // throw ValidationException::withMessages([
-        //     $this->username() => [trans('auth.failed')],
-        // ]);\
-        $student = Student::where('username', $request->username)->first();
-        if ( !$student ) {
-            throw ValidationException::withMessages([
-                $this->username() => [trans('auth.username')],
-            ]);
-        }
-
-        if ( ! Hash::check($request->password, $student->password) ) {
-            throw ValidationException::withMessages([
-                'password' => [trans('auth.password')],
-            ]);
-        }
-
-        if ( ! (Hash::check($request->password, $student->password) && $student->status == '1' ) ) {
-            throw ValidationException::withMessages([
-                'status' => [trans('auth.status')],
-            ]);
-        }
+        throw ValidationException::withMessages([
+            $this->username() => [trans('auth.failed')],
+        ]);
     }
 
     /**

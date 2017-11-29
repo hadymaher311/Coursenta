@@ -18,6 +18,7 @@ class CreateCoursesTable extends Migration
             $table->string('name');
             $table->float('cost');
             $table->float('offer_cost')->nullable();
+            $table->string('image')->nullable();
             $table->text('describtion');
             $table->integer('sessions_number');
             $table->integer('professor_id')->unsigned();
