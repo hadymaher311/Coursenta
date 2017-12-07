@@ -1,5 +1,14 @@
-Team members:
-    •	Aisha Mousa		      1		32
-    •	Hady Maher 		      2		28
-    •	Ibrahim Mahmoud	       1                1
-    •	Reem Ashraf		       1               24
+## About Project
+
+This is a website for courses center, We build it for faculty project using laravel framework
+
+## Team
+
+- **Aisha Mousa**
+- **Hady Maher**
+- **Ibrahim Mahmoud**
+- **Reem Ashraf**
+
+## License
+
+[MIT license](http://opensource.org/licenses/MIT).
