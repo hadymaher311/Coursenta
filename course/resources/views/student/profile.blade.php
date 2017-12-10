@@ -67,21 +67,50 @@
 			</div>
 		</div>
 
-		<!--Grid column-->
-        <div class="col-md-6 mb-r">
-            <div class="card card-image" style="background-image: url('{{ asset('/images/img3.jpg') }}');">
-                <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
-                    <div>
-                        <h3 class="card-title py-3 font-bold"><i class="fa fa-book"></i> <strong>Course Title</strong></h3>
-                        <p class="pb-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
-                            optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos.
-                            Odit sed qui, dolorum!</p>
-                        <a class="btn btn-success btn-rounded"><i class="fa fa-clone left"></i> View Course</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--Grid column-->
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="card border-dark mb-3">
+					<div class="card-header">My Courses</div>
+					<div class="card-body">
+						
+						<div class="row">
+							<!--Grid column-->
+					        <div class="col-md-6 mb-r pt-3" style="padding: 2rem;">
+					            <div class="card card-image" style="background-image: url('{{ asset('/images/img3.jpg') }}');">
+					                <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+					                    <div>
+					                        <h3 class="card-title py-3 font-bold"><i class="fa fa-book"></i> <strong>Course Title</strong></h3>
+					                        <p class="pb-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
+					                            optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos.
+					                            Odit sed qui, dolorum!</p>
+					                        <a class="btn btn-success btn-rounded"><i class="fa fa-clone left"></i> View Course</a>
+					                    </div>
+					                </div>
+					            </div>
+					        </div>
+					        <!--Grid column-->
+
+					        <!--Grid column-->
+					        <div class="col-md-6 mb-r pt-3" style="padding: 2rem;">
+					            <div class="card card-image" style="background-image: url('{{ asset('/images/img2.jpg') }}');">
+					                <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
+					                    <div>
+					                        <h3 class="card-title py-3 font-bold"><i class="fa fa-book"></i> <strong>Course Title</strong></h3>
+					                        <p class="pb-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
+					                            optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos.
+					                            Odit sed qui, dolorum!</p>
+					                        <a class="btn btn-danger btn-rounded"><i class="fa fa-clone left"></i> View Course</a>
+					                    </div>
+					                </div>
+					            </div>
+					        </div>
+					        <!--Grid column-->
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 
 		<div class="row">
 			<div class="col-sm-12">
