@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('title')
-	Student Profile
+	Professor Profile
 @endsection
 <style>
 	header {
@@ -29,7 +29,7 @@
 		<div class="row">
 			<div class="col-md-5">
 				<div class="card mb-3">
-				  <img class="card-img-top" src="{{ asset('/images/team2.jpg') }}" alt="Card image cap">
+				  <img class="card-img-top" src="{{ asset('/images/team3.jpg') }}" alt="Card image cap">
 				  <div class="card-body-custom text-center">
 				    <h4 class="card-title">{{ Auth::user()->name }}</h4>
 				    <button class="btn btn-purple">Upload Image</button>
@@ -52,13 +52,10 @@
 				    <h5 class="card-title"><strong>Mobile Number:</strong> {{ Auth::user()->mobile_number }}</h5>
 				  </div>
 				<div class="card-body-custom text-dark bg-grey-light-3">
-				    <h5 class="card-title"><strong>School:</strong> {{ Auth::user()->school }}</h5>
+				    <h5 class="card-title"><strong>field:</strong> {{ Auth::user()->field }}</h5>
 				  </div>
 				<div class="card-body-custom text-dark bg-grey-light-3">
 				    <h5 class="card-title"><strong>Address:</strong> {{ Auth::user()->address }}</h5>
-				  </div>
-				<div class="card-body-custom text-dark bg-grey-light-3">
-				    <h5 class="card-title"><strong>Date of Birth:</strong> {{ Auth::user()->date_of_birth }}</h5>
 				  </div>
 
 					<a class="btn btn-purple">Edit Profile</a>
@@ -66,7 +63,7 @@
 				</div>			
 			</div>
 		</div>
-
+{{--  
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="card border-dark mb-3">
@@ -119,8 +116,8 @@
 
 		                        <!--Brief-->
 		                        <div class="brief">
-		                            <a href="#" class="name">{{ Auth::user()->name }}</a> commented on {{ $comment['name'] }}<div class="date">{{--{ --{$comment['updated_at']->toDateTimeString()->diffForHumans() }}</div>
-		                        </div>--}}
+		                            <a href="#" class="name">{{ Auth::user()->name }}</a> commented on {{ $comment['name'] }}<div class="date">{{$comment['updated_at']->toDateTimeString()->diffForHumans() }}</div>
+		                        </div>
 
 		                        <!--Added text-->
 		                        <div class="added-text">{{ $comment['content'] }}</div>
@@ -142,6 +139,7 @@
 		</div>
 
 	</div>
+	--}}
 @endsection
 
 
