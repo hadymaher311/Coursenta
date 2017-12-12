@@ -120,7 +120,8 @@
 
 		                        <!--Brief-->
 		                        <div class="brief">
-		                            <a href="#" class="name">{{ Auth::user()->name }}</a> commented on {{ $comment->name }}<div class="date">{{Carbon\Carbon::createFromTimestampUTC(strtotime($comment->created_at))->diffForHumans() }}</div>
+		                            <a href="#" class="name">{{ Auth::user()->name }}</a> commented on {{ $comment->name }}
+		                            <div class="date">{{Carbon\Carbon::createFromTimestampUTC(strtotime($comment->updated_at))->diffForHumans() }}</div>
 		                        </div>
 
 		                        <!--Added text-->
