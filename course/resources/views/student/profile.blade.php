@@ -29,9 +29,9 @@
 		<div class="row">
 			<div class="col-md-5">
 				<div class="card mb-3">
-				  <img class="card-img-top" src="{{ asset('/images/team3.jpg') }}" alt="Card image cap">
+				  <img class="card-img-top" src="{{ asset('/images/team2.jpg') }}" alt="Card image cap">
 				  <div class="card-body-custom text-center">
-				    <h4 class="card-title">reem ashraf</h4>
+				    <h4 class="card-title">{{ Auth::user()->name }}</h4>
 				    <button class="btn btn-purple">Upload Image</button>
 					</div>
 				</div>
@@ -40,25 +40,25 @@
 				<div class="card border-dark mb-3">
 				  <div class="card-header">Profile Info</div>
 				  <div class="card-body-custom text-dark bg-grey-light-3">
-				    <h5 class="card-title">Name: </h5>
+				    <h5 class="card-title"><strong>Name:</strong> {{ Auth::user()->name }}</h5>
 				  </div>
 				  <div class="card-body-custom text-dark bg-grey-light-3">
-				    <h5 class="card-title">Username: </h5>
+				    <h5 class="card-title"><strong>Username:</strong> {{ Auth::user()->username }}</h5>
 				  </div>
 				  <div class="card-body-custom text-dark bg-grey-light-3">
-				    <h5 class="card-title">Email: </h5>
+				    <h5 class="card-title"><strong>Email:</strong> {{ Auth::user()->email }}</h5>
 				  </div>
 				<div class="card-body-custom text-dark bg-grey-light-3">
-				    <h5 class="card-title">Mobile Number: </h5>
+				    <h5 class="card-title"><strong>Mobile Number:</strong> {{ Auth::user()->mobile_number }}</h5>
 				  </div>
 				<div class="card-body-custom text-dark bg-grey-light-3">
-				    <h5 class="card-title">School: </h5>
+				    <h5 class="card-title"><strong>School:</strong> {{ Auth::user()->school }}</h5>
 				  </div>
 				<div class="card-body-custom text-dark bg-grey-light-3">
-				    <h5 class="card-title">Address: </h5>
+				    <h5 class="card-title"><strong>Address:</strong> {{ Auth::user()->address }}</h5>
 				  </div>
 				<div class="card-body-custom text-dark bg-grey-light-3">
-				    <h5 class="card-title">Date of Birth: </h5>
+				    <h5 class="card-title"><strong>Date of Birth:</strong> {{ Auth::user()->date_of_birth }}</h5>
 				  </div>
 
 					<a class="btn btn-purple">Edit Profile</a>
@@ -74,37 +74,21 @@
 					<div class="card-body">
 						
 						<div class="row">
-							<!--Grid column-->
-					        <div class="col-md-6 mb-r pt-3" style="padding: 2rem;">
-					            <div class="card card-image" style="background-image: url('{{ asset('/images/img3.jpg') }}');">
-					                <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
-					                    <div>
-					                        <h3 class="card-title py-3 font-bold"><i class="fa fa-book"></i> <strong>Course Title</strong></h3>
-					                        <p class="pb-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
-					                            optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos.
-					                            Odit sed qui, dolorum!</p>
-					                        <a class="btn btn-success btn-rounded"><i class="fa fa-clone left"></i> View Course</a>
-					                    </div>
-					                </div>
-					            </div>
-					        </div>
-					        <!--Grid column-->
-
-					        <!--Grid column-->
-					        <div class="col-md-6 mb-r pt-3" style="padding: 2rem;">
-					            <div class="card card-image" style="background-image: url('{{ asset('/images/img2.jpg') }}');">
-					                <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
-					                    <div>
-					                        <h3 class="card-title py-3 font-bold"><i class="fa fa-book"></i> <strong>Course Title</strong></h3>
-					                        <p class="pb-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat fugiat, laboriosam, voluptatem,
-					                            optio vero odio nam sit officia accusamus minus error nisi architecto nulla ipsum dignissimos.
-					                            Odit sed qui, dolorum!</p>
-					                        <a class="btn btn-danger btn-rounded"><i class="fa fa-clone left"></i> View Course</a>
-					                    </div>
-					                </div>
-					            </div>
-					        </div>
-					        <!--Grid column-->
+							@foreach( $courses as $course)
+								<!--Grid column-->
+						        <div class="col-md-6 mb-r pt-3" style="padding: 2rem;">
+						            <div class="card card-image" style="background-image: url('{{ asset('/images/img3.jpg') }}');">
+						                <div class="text-white text-center align-items-center rgba-black-strong py-5 px-4">
+						                    <div>
+						                        <h3 class="card-title py-3 font-bold"><i class="fa fa-book"></i> <strong>{{ $course['name'] }}</strong></h3>
+						                        <p class="pb-3">{{ $course['describtion'] }}</p>
+						                        <a href="/course/{{ $course['code'] }}" class="btn btn-success btn-rounded"><i class="fa fa-clone left"></i> View Course</a>
+						                    </div>
+						                </div>
+						            </div>
+						        </div>
+						        <!--Grid column-->
+					        @endforeach
 
 						</div>
 					</div>
@@ -117,6 +101,8 @@
 				<div class="card border-dark mb-3">
 					<div class="card-header">My Comments</div>
 				<!--Section: Social newsfeed v.1-->
+				@foreach($comments as $comment)
+				<?php $comment = (object) $comment; ?>
 				<section class="pt-5 pb-3 card-body-custom">
 
 		            <!--Newsfeed-->
@@ -126,7 +112,7 @@
 
 		                    <!--Label-->
 		                    <div class="label">
-		                        <img src="{{ asset('/images/team3.jpg') }}" class="rounded-circle z-depth-1-half">
+		                        <img src="{{ asset('/images/team2.jpg') }}" class="rounded-circle z-depth-1-half">
 		                    </div>
 
 		                    <!--Excert-->
@@ -134,11 +120,11 @@
 
 		                        <!--Brief-->
 		                        <div class="brief">
-		                            <a href="#" class="name">Lili Rose</a> posted on his page<div class="date">2 days ago</div>
+		                            <a href="#" class="name">{{ Auth::user()->name }}</a> commented on {{ $comment->name }}<div class="date">{{Carbon\Carbon::createFromTimestampUTC(strtotime($comment->created_at))->diffForHumans() }}</div>
 		                        </div>
 
 		                        <!--Added text-->
-		                        <div class="added-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero inventore, iste quas libero eius? Vitae sint neque animi alias sunt dolor, accusantium ducimus, non placeat voluptate.</div>
+		                        <div class="added-text">{{ $comment->content }}</div>
 
 		                    </div>
 
@@ -149,7 +135,9 @@
 		            <!--Newsfeed-->
 
 				</section>
- 
+				@endforeach
+
+
 			</div>
 		</div>
 		</div>
