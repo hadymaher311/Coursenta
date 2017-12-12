@@ -24,6 +24,10 @@ class professorController extends Controller
      */
     public function index()
     {
-        return view('professor.home');
+        /* $con = DB::connection()->getPdo();
+        $stmt = $con->prepare("SELECT * FROM professors  INNER JOIN attends ON attends.course_code = courses.code WHERE student_id = ?");   
+        $stmt->execute(array(Auth::user()->id));
+        $courses = $stmt->fetchAll();*/
+        return view('professor.profile');
     }
 }
