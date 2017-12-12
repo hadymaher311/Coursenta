@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
-use App\comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;

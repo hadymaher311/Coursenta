@@ -74,7 +74,7 @@
 							<i class="fa fa-sign-in" aria-hidden="true"></i> 
 							Sign up
 						</button>
-						<a href="#" class="btn btn-outline-purple">
+						<a href="{{ url('professor') }}" class="btn btn-outline-purple">
 							<i class="fa fa-users" aria-hidden="true"></i> Professors
 						</a>
 					</div>

@@ -75,19 +75,19 @@
 						
 						<div class="row">
 							@foreach( $courses as $course)
-							<!--Grid column-->
-					        <div class="col-md-6 mb-r pt-3" style="padding: 2rem;">
-					            <div class="card card-image" style="background-image: url('{{ asset('/images/img3.jpg') }}');">
-					                <div class="text-white text-center d-flex align-items-center rgba-black-strong py-5 px-4">
-					                    <div class="text-center">
-					                        <h3 class="card-title py-3 font-bold"><i class="fa fa-book"></i> <strong>{{ $course['name'] }}</strong></h3>
-					                        <p class="pb-3">{{ $course['describtion'] }}</p>
-					                        <a href="/course/{{ $course['code'] }}" class="btn btn-success btn-rounded"><i class="fa fa-clone left"></i> View Course</a>
-					                    </div>
-					                </div>
-					            </div>
-					        </div>
-					        <!--Grid column-->
+								<!--Grid column-->
+						        <div class="col-md-6 mb-r pt-3" style="padding: 2rem;">
+						            <div class="card card-image" style="background-image: url('{{ asset('/images/img3.jpg') }}');">
+						                <div class="text-white text-center align-items-center rgba-black-strong py-5 px-4">
+						                    <div>
+						                        <h3 class="card-title py-3 font-bold"><i class="fa fa-book"></i> <strong>{{ $course['name'] }}</strong></h3>
+						                        <p class="pb-3">{{ $course['describtion'] }}</p>
+						                        <a href="/course/{{ $course['code'] }}" class="btn btn-success btn-rounded"><i class="fa fa-clone left"></i> View Course</a>
+						                    </div>
+						                </div>
+						            </div>
+						        </div>
+						        <!--Grid column-->
 					        @endforeach
 
 						</div>
@@ -102,6 +102,7 @@
 					<div class="card-header">My Comments</div>
 				<!--Section: Social newsfeed v.1-->
 				@foreach($comments as $comment)
+				<?php $comment = (object) $comment; ?>
 				<section class="pt-5 pb-3 card-body-custom">
 
 		            <!--Newsfeed-->
@@ -119,11 +120,11 @@
 
 		                        <!--Brief-->
 		                        <div class="brief">
-		                            <a href="#" class="name">{{ Auth::user()->name }}</a> commented on {{ $comment['name'] }}<div class="date">{{--{ --{$comment['updated_at']->toDateTimeString()->diffForHumans() }}</div>
-		                        </div>--}}
+		                            <a href="#" class="name">{{ Auth::user()->name }}</a> commented on {{ $comment->name }}<div class="date">{{Carbon\Carbon::createFromTimestampUTC(strtotime($comment->updated_at))->diffForHumans() }}</div>
+		                        </div>
 
 		                        <!--Added text-->
-		                        <div class="added-text">{{ $comment['content'] }}</div>
+		                        <div class="added-text">{{ $comment->content }}</div>
 
 		                    </div>
 
