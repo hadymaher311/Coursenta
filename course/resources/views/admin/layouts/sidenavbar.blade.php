@@ -29,9 +29,9 @@
       <!-- /.search form -->
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
-        <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Courses</span></a></li>
+        <li><a href="{{ url('admin/courses') }}"><i class="fa fa-circle-o text-red"></i> <span>Courses</span></a></li>
         <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Students</span></a></li>
-        <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Professors</span></a></li>
+        <li><a href="{{ url('admin/professors') }}"><i class="fa fa-circle-o text-aqua"></i> <span>Professors</span></a></li>
       </ul>
     </section>
     <!-- /.sidebar -->
