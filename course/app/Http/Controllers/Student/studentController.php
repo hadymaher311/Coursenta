@@ -46,23 +46,22 @@ class studentController extends Controller
         $this->validate($request, [
             'username'=> [
                 'string',
-                'required',
                 'max:30',
                 Rule::unique('students')->ignore(Auth::id()),
             ],
             'email'=> [
                 'email',
-                'required',
                 'max:100',
                 Rule::unique('students')->ignore(Auth::id()),
             ],
-            'mobile'=> 'numeric|required',
+            'mobile_number'=> 'numeric|required',
        
         ]);
 
         $con = DB::connection()->getPdo();
         $stmt = $con->prepare('UPDATE students SET username = ?,name = ? , email = ?,mobile_number = ?,school = ?,address = ?,date_of_birth = ? WHERE id = ? ');
-        $stmt->execute(array($request->username, $request->name, $request->email,$request->mobile_number,$request->school ,$request->address ,$request->date_of_birth ,Auth::id()));        
-        return view('student.profile');
+        $stmt->execute(array($request->username, $request->name, $request->email,$request->mobile_number,$request->school ,$request->address ,$request->date_of_birth ,Auth::id())); 
+        $this->index();       
+        return back();
     }
 }
