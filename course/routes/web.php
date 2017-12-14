@@ -6,14 +6,19 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
-Route::get('/home', 'Student\studentController@index')->name('home');
+Route::group(['namespace' => 'Student'],function(){
+	Route::get('/home', 'studentController@index')->name('home');
+	Route::post('/student/photo', 'studentController@photo');
+});
 
 Route::get('/varifiedEmailStu/{email}/{token}', 'Student\RegisterController@varefied')->name('varifiedEmailStu');
 
 
 Route::group(['namespace' => 'Admin'],function(){
 	Route::GET('admin/home', 'AdminController@index');
+	Route::GET('admin/profile', 'AdminController@profile');
+	Route::POST('admin/photo', 'AdminController@photo');
+	Route::POST('admin/update', 'AdminController@update');
 	Route::GET('admin','LoginController@showLoginForm')->name('admin.login');
 	Route::POST('admin','LoginController@login');
 	Route::POST('admin-password/email','ForgotPasswordController@sendResetLinkEmail')->name('admin.password.email');
