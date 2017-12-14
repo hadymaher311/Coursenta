@@ -40,6 +40,14 @@ Route::group(['namespace' => 'Admin'],function(){
 	Route::GET('admin/new/professor', 'ProfessorsController@show');
 	// add new professor
 	Route::POST('admin/new/professor', 'ProfessorsController@store');
+	// get students view for admin
+	Route::GET('admin/students', 'StudentsController@index');
+	// get Employees view for admin
+	Route::GET('admin/employees', 'EmployeesController@index');
+	// add new employee Page
+	Route::GET('admin/new/employee', 'EmployeesController@show');
+	// add new employee
+	Route::POST('admin/new/employee', 'EmployeesController@store');
 	// get admin login page
 	Route::GET('admin','LoginController@showLoginForm')->name('admin.login');
 	// login with admin
