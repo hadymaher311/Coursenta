@@ -24,4 +24,17 @@ class studentController extends Controller
     	$comments = $stmt->fetchAll();
     	return view('student.profile', compact('courses', 'comments'));
     }
+
+    public function photo(Request $request)
+    {
+        // return $request->file('profile_photo');
+        $this->validate($request, [
+            'profile_photo' => 'image|required',
+        ]);
+        $image = $request->profile_photo->store('public/student/' . Auth::id());
+        $con = DB::connection()->getPdo();
+        $stmt = $con->prepare('UPDATE students SET image = ? WHERE id = ?');
+        $stmt->execute(array($image, Auth::id()));
+        return back();
+    }
 }
