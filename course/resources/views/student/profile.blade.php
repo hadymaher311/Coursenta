@@ -61,8 +61,63 @@
 				    <h5 class="card-title"><strong>Date of Birth:</strong> {{ Auth::user()->date_of_birth }}</h5>
 				  </div>
 
-					<a class="btn btn-purple">Edit Profile</a>
-					
+					<a class="btn btn-purple" data-toggle="modal" data-target="#exampleModal">Edit Profile</a>
+
+										<!-- Modal -->
+					<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					    <div class="modal-dialog modal-notify modal-primary" role="document">
+					        <div class="modal-content">
+					            <div class="modal-header bg-secondary text-white">
+					                <h5 class="modal-title" id="exampleModalLabel">Update profile</h5>
+					                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					                    <span aria-hidden="true">&times;</span>
+					                </button>
+					            </div>
+					            <div class="modal-body">
+					                <div class="md-form form-sm">
+				                        <i class="fa fa-envelope prefix"></i>
+				                        <input type="text" id="form19" class="form-control">
+				                        <label for="form19">Username</label>
+				                    </div>
+
+				                    <div class="md-form form-sm">
+				                        <i class="fa fa-envelope prefix"></i>
+				                        <input type="text" id="form19" class="form-control">
+				                        <label for="form19">Name</label>
+				                    </div>
+				    
+				                    <div class="md-form form-sm">
+				                        <i class="fa fa-lock prefix"></i>
+				                        <input type="Email" id="form20" class="form-control">
+				                        <label for="form20">Email</label>
+				                    </div>
+				    
+				                    <div class="md-form form-sm">
+				                        <i class="fa fa-tag prefix"></i>
+				                        <input type="tel" id="form21" class="form-control">
+				                        <label for="form21">Mobile Number</label>
+				                    </div>
+
+				                    <div class="md-form form-sm">
+				                        <i class="fa fa-tag prefix"></i>
+				                        <input type="text" id="form21" class="form-control">
+				                        <label for="form22">School</label>
+				                    </div>
+				    
+				                    <div class="md-form form-sm">
+				                        <i class="fa fa-pencil prefix"></i>
+				                        <input type="text" id="form21" class="form-control">
+				                        <label for="form23">Date Of Birth</label>
+				                    </div>
+				    
+				                    <div class="text-center mt-1-half">
+				                        <button type="submit" class="btn btn-purple mb-2">Update <i class="fa fa-send ml-1"></i></button>
+				                    </div>
+					            </div>
+					        </div>
+					    </div>
+					</div>
+
 				</div>			
 			</div>
 		</div>
