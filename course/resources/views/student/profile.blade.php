@@ -27,16 +27,25 @@
 @section('body')
 	<div class="container">
 		<div class="row">
-			<div class="col-md-5">
+			<div class="col-md-3">
 				<div class="card mb-3">
-				  <img class="card-img-top" src="{{ asset('/images/team2.jpg') }}" alt="Card image cap">
+				  <img class="card-img-top" src="
+				  @if (Auth::user()->image == '')
+				  {{ asset('/images/student_default.jpg') }}
+				  @else
+				  {{ Storage::disk('local')->url(Auth::user()->image) }}
+				  @endif" alt="Card image cap">
 				  <div class="card-body-custom text-center">
 				    <h4 class="card-title">{{ Auth::user()->name }}</h4>
-				    <button class="btn btn-purple">Upload Image</button>
+				    <button id="profileImage" class="btn btn-purple">Upload Image</button>
+				    <form action="{{ url('student/photo') }}" method="POST" enctype="multipart/form-data">
+		            	{{ csrf_field() }}
+		              	<input type="file" name="profile_photo" id="fileImage" accept="image/*" />
+		              </form>
 					</div>
 				</div>
 			</div>
-			<div class="col-md-7">
+			<div class="col-md-9">
 				<div class="card border-dark mb-3">
 				  <div class="card-header">Profile Info</div>
 				  <div class="card-body-custom text-dark bg-grey-light-3">
@@ -120,10 +129,8 @@
 
 		                        <!--Brief-->
 		                        <div class="brief">
-
 		                            <a href="#" class="name">{{ Auth::user()->name }}</a> commented on {{ $comment->name }}
-		                            <div class="date">{{Carbon\Carbon::createFromTimestampUTC(strtotime($comment->updated_at))->diffForHumans() }}</div>
-
+		                            <div class="date">{{ Carbon\Carbon::createFromTimestampUTC(strtotime($comment->updated_at))->diffForHumans() }}</div>
 		                        </div>
 
 		                        <!--Added text-->
@@ -150,7 +157,21 @@
 
 
 @section('footer')
-	
+
+	<script>
+		// make file button
+		var wrapper = $('<div/>').css({height:0,width:0,'overflow':'hidden'});
+		var fileInput = $('input:file').wrap(wrapper);
+
+		$('#fileImage').on("change", function() {
+		    $(this).parents("form").submit();
+		});
+
+		$('#profileImage').click(function(){
+		    fileInput.click();
+		}).show();
+	</script>
+
 @endsection
 
 
