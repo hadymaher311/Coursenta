@@ -26,6 +26,15 @@
 
 @section('body')
 	<div class="container">
+		@if ($errors->any())
+		    <div class="alert alert-danger">
+		        <ul>
+		            @foreach ($errors->all() as $error)
+		                <li>{{ $error }}</li>
+		            @endforeach
+		        </ul>
+		    </div>
+		@endif
 		<div class="row">
 			<div class="col-md-3">
 				<div class="card mb-3">
@@ -70,12 +79,76 @@
 				    <h5 class="card-title"><strong>Date of Birth:</strong> {{ Auth::user()->date_of_birth }}</h5>
 				  </div>
 
-					<a class="btn btn-purple">Edit Profile</a>
-					
+					<a class="btn btn-purple" data-toggle="modal" data-target="#exampleModal">Edit Profile</a>
+				
+										<!-- Modal -->
+					<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					    <div class="modal-dialog modal-notify modal-primary" role="document">
+					        <div class="modal-content">
+					            <div class="modal-header bg-secondary text-white">
+					                <h5 class="modal-title" id="exampleModalLabel">Update profile</h5>
+					                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					                    <span aria-hidden="true">&times;</span>
+					                </button>
+					            </div>
+					            <div class="modal-body">
+					            	<form action="{{ url('student/update') }} " method="POST">
+					            		{{ csrf_field() }}
+					                <div class="md-form form-sm">
+				                        <i class="fa fa-envelope prefix"></i>
+				                        <input type="text" id="form19" name="username" value="{{ Auth::user()->username }}" class="form-control">
+				                        <label for="form19">Username</label>
+				                    </div>
+
+				                    <div class="md-form form-sm">
+				                        <i class="fa fa-envelope prefix"></i>
+				                        <input type="text" id="form19" name="name" value="{{ Auth::user()->name }}" class="form-control">
+				                        <label for="form19">Name</label>
+				                    </div>
+				    
+				                    <div class="md-form form-sm">
+				                        <i class="fa fa-lock prefix"></i>
+				                        <input type="Email" id="form20" name="email" value="{{ Auth::user()->email }}" class="form-control">
+				                        <label for="form20">Email</label>
+				                    </div>
+				    
+				                    <div class="md-form form-sm">
+				                        <i class="fa fa-tag prefix"></i>
+				                        <input type="tel" id="form21" name="mobile_number" value="{{ Auth::user()->mobile_number }}" class="form-control">
+				                        <label for="form21">Mobile Number</label>
+				                    </div>
+
+				                    <div class="md-form form-sm">
+				                        <i class="fa fa-tag prefix"></i>
+				                        <input type="text" id="form21" name="school" value="{{ Auth::user()->school }}"class="form-control">
+				                        <label for="form22">School</label>
+				                    </div>
+
+
+					                <div class="md-form form-sm">
+				                        <i class="fa fa-envelope prefix"></i>
+				                        <input type="text" id="form19" name="address" value="{{ Auth::user()->address }}" class="form-control">
+				                        <label for="form19">Address</label>
+				                    </div>
+				    
+				                    <div class="md-form form-sm">
+				                        <i class="fa fa-pencil prefix"></i>
+				                        <input type="text" id="form21" name="date_of_birth" value="{{ Auth::user()->date_of_birth }}" class="form-control">
+				                        <label for="form23">Date Of Birth</label>
+				                    </div>
+				    
+				                    <div class="text-center mt-1-half">
+				                        <button type="submit" class="btn btn-purple mb-2">Update <i class="fa fa-send ml-1"></i></button>
+				                    </div>
+					            </div>
+					           </form>
+					        </div>
+					    </div>
+					</div>
+
 				</div>			
 			</div>
 		</div>
-
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="card border-dark mb-3">
@@ -173,6 +246,9 @@
 	</script>
 
 @endsection
+
+
+
 
 
 

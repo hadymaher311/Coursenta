@@ -16,6 +16,8 @@ Route::group(['namespace' => 'Student'],function(){
 	Route::get('/home', 'studentController@index')->name('home');
 	// change student profile photo
 	Route::post('/student/photo', 'studentController@photo');
+	Route::post('/student/update', 'studentController@update_info');
+
 });
 
 // Admin routes
