@@ -9,6 +9,8 @@ Auth::routes();
 Route::group(['namespace' => 'Student'],function(){
 	Route::get('/home', 'studentController@index')->name('home');
 	Route::post('/student/photo', 'studentController@photo');
+	Route::post('/student/update', 'studentController@update_info');
+
 });
 
 Route::get('/varifiedEmailStu/{email}/{token}', 'Student\RegisterController@varefied')->name('varifiedEmailStu');
