@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
 class studentController extends Controller
@@ -52,7 +53,7 @@ class studentController extends Controller
                 Rule::unique('students')->ignore(Auth::id()),
             ],
             'mobile_number'=> 'numeric|required',
-            'password'=> 'string|required|confirmed',       
+            //'password'=> 'string|confirmed',       
         ]);
 
         $con = DB::connection()->getPdo();
