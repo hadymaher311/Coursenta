@@ -71,8 +71,7 @@
 				  </div>
 
 					<a class="btn btn-purple" data-toggle="modal" data-target="#exampleModal">Edit Profile</a>
-				
-										<!-- Modal -->
+					
 					<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					    <div class="modal-dialog modal-notify modal-primary" role="document">
 					        <div class="modal-content">
@@ -101,6 +100,12 @@
 				                        <i class="fa fa-lock prefix"></i>
 				                        <input type="Email" id="form20" name="email" value="{{ Auth::user()->email }}" class="form-control">
 				                        <label for="form20">Email</label>
+				                    </div>
+
+				                     <div class="md-form form-sm">
+				                        <i class="fa fa-envelope prefix"></i>
+				                        <input type="text" id="form19" name="password" value="{{ Auth::user()->password }}" class="form-control">
+				                        <label for="form21">Password</label>
 				                    </div>
 				    
 				                    <div class="md-form form-sm">

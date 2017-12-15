@@ -4,7 +4,7 @@
 Route::get('/', function () {
     return view('homepage');
 });
-
+-
 Auth::routes();
 Route::group(['namespace' => 'Student'],function(){
 	Route::get('/home', 'studentController@index')->name('home');
