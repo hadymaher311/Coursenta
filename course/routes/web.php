@@ -48,6 +48,12 @@ Route::group(['namespace' => 'Admin'],function(){
 	Route::GET('admin/new/employee', 'EmployeesController@show');
 	// add new employee
 	Route::POST('admin/new/employee', 'EmployeesController@store');
+	// admin updates room data page
+	Route::GET('/admin/rooms/{room}/edit/{branch}', 'RoomsController@edit');
+	// admin updates room data
+	Route::PATCH('/admin/rooms/{room}/edit/{branch}', 'RoomsController@update');
+	// admin deletes room data
+	Route::DELETE('/admin/rooms/{room}/delete/{branch}', 'RoomsController@destroy');
 	// admin controlls rooms routes
 	Route::resource('/admin/rooms', 'RoomsController');
 	// get admin login page

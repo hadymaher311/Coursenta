@@ -43,6 +43,7 @@ Rooms
 	                  <th>Availability</th>
 	                  <th>AC</th>
 	                  <th>Projector</th>
+	                  <th>Actions</th>
 	                  <th>Added From</th>
 	                </tr>
 	                </thead>
@@ -77,6 +78,26 @@ Rooms
 	                				<button class="btn btn-danger btn-xs"><i class="fa fa-times" aria-hidden="true"></i></button>
 	                			@endif
 	                		</td>
+
+							<td>
+								<a href="{{ url('/admin/rooms/' . $room->number . '/edit/' . $room->branch_code) }}" class="btn btn-primary btn-xs">Update</a>
+								
+								<form id="delete-{{ $room->number }}-{{ $room->branch_code }}" method="POST" action="{{ url('/admin/rooms/' . $room->number . '/delete/' . $room->branch_code) }}" style="display: none">
+	                                {{ csrf_field() }}
+	                                {{ method_field('DELETE') }}
+	                            </form>
+	                            <a class="btn btn-danger btn-xs" href="" onclick="
+	                              	if(confirm('Are you sure, You Want to delete this?'))
+	                                  {
+	                                    event.preventDefault();
+	                                    document.getElementById('delete-{{ $room->number }}-{{ $room->branch_code }}').submit();
+	                                  }
+	                                  else{
+	                                    event.preventDefault();
+	                                  }">Delete</a>
+
+							</td>
+
 	                		<td>{{ Carbon\Carbon::createFromTimestampUTC(strtotime($room->created_at))->diffForHumans() }}</td>
 	                	</tr>
 	                @endforeach
@@ -92,6 +113,7 @@ Rooms
 	                  <th>Availability</th>
 	                  <th>AC</th>
 	                  <th>Projector</th>
+	                  <th>Actions</th>
 	                  <th>Added From</th>
 	                </tr>
 	                </tfoot>
