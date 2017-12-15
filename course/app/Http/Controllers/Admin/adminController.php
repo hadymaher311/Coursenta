@@ -15,6 +15,8 @@ class adminController extends Controller
      * Create a new controller instance.
      *
      * @return void
+     * middleware of admin
+     * not access any functionality of this controller for not auth as admin
      */
     public function __construct()
     {
@@ -26,6 +28,7 @@ class adminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // get admin dashboard
     public function index()
     {
         $courses_count = $this->getcount('code', 'courses');
@@ -44,33 +47,35 @@ class adminController extends Controller
             $stmt->execute();
             array_push($comments, $stmt->fetchAll());
         }
-        // return $comments;
         return view('admin.home', compact('courses_count', 'professors_count', 'students_count', 'employees_count', 'courses', 'comments'));
     }
 
-    private function getcount($count, $from)
+    // get count of table with column
+    private function getcount($column, $table)
     {
         $con = DB::connection()->getPdo();
-        $stmt = $con->prepare('SELECT COUNT(' . $from . '.' . $count . ') FROM ' . $from);
+        $stmt = $con->prepare('SELECT COUNT(' . $table . '.' . $column . ') FROM ' . $table);
         $stmt->execute();
-        return $stmt->fetch()['COUNT(' . $from . '.' . $count . ')'];
+        return $stmt->fetch()['COUNT(' . $table . '.' . $column . ')'];
     }
 
+    // get admin profile
     public function profile()
     {
         return view('admin.profile');
     }
 
+    // change admin photo
     public function photo(Request $request)
     {
-        // return $request->file('profile_photo');
         $image = $request->profile_photo->store('public/admins/' . Auth::id());
         $con = DB::connection()->getPdo();
-        $stmt = $con->prepare('UPDATE admins SET image = ? WHERE id = ?');
-        $stmt->execute(array($image, Auth::id()));
+        $stmt = $con->prepare('UPDATE admins SET image = ?, updated_at = ? WHERE id = ?');
+        $stmt->execute(array($image, \Carbon\Carbon::now(), Auth::id()));
         return back();
     }
 
+    // update admin info
     public function update(Request $request)
     {
         $this->validate($request, [
@@ -78,12 +83,14 @@ class adminController extends Controller
                 'string',
                 'required',
                 'max:30',
+                // validae unique value for admin username except this admin
                 Rule::unique('admins')->ignore(Auth::id()),
             ],
             'email'=> [
                 'email',
                 'required',
                 'max:100',
+                // validae unique value for admin email except this admin
                 Rule::unique('admins')->ignore(Auth::id()),
             ],
             'mobile'=> 'numeric|required',
@@ -91,8 +98,8 @@ class adminController extends Controller
         ]);
 
         $con = DB::connection()->getPdo();
-        $stmt = $con->prepare('UPDATE admins SET username = ?, email = ?, mobile_number = ?, password = ? WHERE id = ?');
-        $stmt->execute(array($request->username, $request->email, $request->mobile, Hash::make($request->password), Auth::id()));
+        $stmt = $con->prepare('UPDATE admins SET username = ?, email = ?, mobile_number = ?, password = ?, updated_at = ? WHERE id = ?');
+        $stmt->execute(array($request->username, $request->email, $request->mobile, Hash::make($request->password), \Carbon\Carbon::now(), Auth::id()));
         return back();
     }
 

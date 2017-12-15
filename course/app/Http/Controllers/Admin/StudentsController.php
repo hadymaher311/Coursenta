@@ -8,11 +8,14 @@ use Illuminate\Support\Facades\DB;
 
 class StudentsController extends Controller
 {
+	// middleware of admin
+     // * not access any functionality of this controller for not auth as admin
     public function  __construct()
 	{
 		$this->middleware('auth:admin');
 	}
 
+	// preview students data for admin
 	public function index()
 	{
 		$con = DB::connection()->getPdo();

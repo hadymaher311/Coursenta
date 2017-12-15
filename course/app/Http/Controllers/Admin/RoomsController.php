@@ -10,6 +10,8 @@ use Illuminate\Validation\Rule;
 
 class RoomsController extends Controller
 {
+    // middleware of admin
+     // * not access any functionality of this controller for not auth as admin
     public function __construct()
     {
         $this->middleware('auth:admin');
@@ -20,6 +22,7 @@ class RoomsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // preview rooms data
     public function index()
     {
         $con = DB::connection()->getPdo();
@@ -34,6 +37,7 @@ class RoomsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    // get page to add new room
     public function create()
     {
         $con = DB::connection()->getPdo();
@@ -50,6 +54,7 @@ class RoomsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    // add new room
     public function store(Request $request)
     {
         $this->branch = $request->branch;
@@ -58,6 +63,7 @@ class RoomsController extends Controller
             'number' => [
                 'required',
                 'numeric',
+                // unique room number for same branch
                 Rule::unique('rooms')->where(function ($query) {
                     return $query->where('branch_code', $this->branch);
                 })
@@ -100,6 +106,7 @@ class RoomsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // get page to edit room data
     public function edit($room, $branch)
     {
         $con = DB::connection()->getPdo();
@@ -117,6 +124,7 @@ class RoomsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // update room data
     public function update(Request $request, $room, $branch)
     {
         $this->branch = $branch;
@@ -124,6 +132,7 @@ class RoomsController extends Controller
             'number' => [
                 'required',
                 'numeric',
+                // unique room number for same branch but ignore this room number
                 Rule::unique('rooms')->where(function ($query) {
                     return $query->where('branch_code', $this->branch);
                 })->ignore($room, 'number')
@@ -148,6 +157,7 @@ class RoomsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    // delete room
     public function destroy($room, $branch)
     {
         Validator::make(array('room' => $room, 'branch' => $branch),[

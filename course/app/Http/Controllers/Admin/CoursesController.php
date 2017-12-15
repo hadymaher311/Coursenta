@@ -8,10 +8,14 @@ use Illuminate\Support\Facades\DB;
 
 class CoursesController extends Controller
 {
+    // middleware of admin
+     // * not access any functionality of this controller for not auth as admin
 	public function  __construct()
 	{
 		$this->middleware('auth:admin');
 	}
+
+    // preview courses data for admin 
     public function index()
     {
     	$con = DB::connection()->getPdo();
@@ -21,6 +25,7 @@ class CoursesController extends Controller
     	return view('admin.courses.courses', compact('courses'));
     }
 
+    // verify course with admin
     public function verify(Request $request, $id)
     {
     	$con = DB::connection()->getPdo();

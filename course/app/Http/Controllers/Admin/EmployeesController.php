@@ -10,11 +10,14 @@ use Illuminate\Validation\Rule;
 
 class EmployeesController extends Controller
 {
+    // middleware of admin
+     // * not access any functionality of this controller for not auth as admin
     public function  __construct()
 	{
 		$this->middleware('auth:admin');
 	}
 
+    // preview employees data for admin
 	public function index()
 	{
 		$con = DB::connection()->getPdo();
@@ -24,6 +27,7 @@ class EmployeesController extends Controller
     	return view('admin.employees.employees', compact('employees'));
 	}
 
+    // get page to add new employee
 	public function show()
 	{
 		$con = DB::connection()->getPdo();
@@ -33,6 +37,7 @@ class EmployeesController extends Controller
 		return view('admin.employees.new', compact('branches'));
 	}
 
+    // add new employee
 	public function store(Request $request)
 	{
 		$this->validate($request, [

@@ -11,11 +11,14 @@ use Illuminate\Validation\Rule;
 
 class ProfessorsController extends Controller
 {
+    // middleware of admin
+     // * not access any functionality of this controller for not auth as admin
     public function  __construct()
 	{
 		$this->middleware('auth:admin');
 	}
 
+    // preview professors data to admin
 	public function index()
 	{
 		$con = DB::connection()->getPdo();
@@ -25,11 +28,13 @@ class ProfessorsController extends Controller
     	return view('admin.professors.professors', compact('professors'));
 	}
 
+    // get page to add new professor
 	public function show()
 	{
 		return view('admin.professors.new');
 	}
 
+    // add new professor  data
 	public function store(Request $request)
 	{
 		$this->validate($request, [
