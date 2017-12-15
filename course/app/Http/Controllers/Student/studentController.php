@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
 class studentController extends Controller
@@ -37,7 +38,7 @@ class studentController extends Controller
         $stmt->execute(array($image, Auth::id()));
         return back();
     }
-
+    
     public function update_info(Request $request)
     {
         $this->validate($request, [
@@ -52,12 +53,12 @@ class studentController extends Controller
                 Rule::unique('students')->ignore(Auth::id()),
             ],
             'mobile_number'=> 'numeric|required',
-       
+            //'password'=> 'string|confirmed',       
         ]);
 
         $con = DB::connection()->getPdo();
-        $stmt = $con->prepare('UPDATE students SET username = ?,name = ? , email = ?,mobile_number = ?,school = ?,address = ?,date_of_birth = ? WHERE id = ? ');
-        $stmt->execute(array($request->username, $request->name, $request->email,$request->mobile_number,$request->school ,$request->address ,$request->date_of_birth ,Auth::id())); 
+        $stmt = $con->prepare('UPDATE students SET username = ?,name = ? , email = ?,mobile_number = ?,school = ?,address = ?,date_of_birth = ?,password = ? WHERE id = ? ');
+        $stmt->execute(array($request->username, $request->name, $request->email,$request->mobile_number,$request->school ,$request->address ,$request->date_of_birth ,Hash::make($request->password), Auth::id())); 
         $this->index();       
         return back();
     }

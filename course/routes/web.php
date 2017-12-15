@@ -5,6 +5,7 @@ Route::get('/', function () {
     return view('homepage');
 });
 
+
 // Student Auth routes
 Auth::routes();
 // Student email verification
