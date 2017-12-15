@@ -26,6 +26,15 @@
 
 @section('body')
 	<div class="container">
+		@if ($errors->any())
+		    <div class="alert alert-danger">
+		        <ul>
+		            @foreach ($errors->all() as $error)
+		                <li>{{ $error }}</li>
+		            @endforeach
+		        </ul>
+		    </div>
+		@endif
 		<div class="row">
 			<div class="col-md-3">
 				<div class="card mb-3">
@@ -145,7 +154,6 @@
 				</div>			
 			</div>
 		</div>
-
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="card border-dark mb-3">

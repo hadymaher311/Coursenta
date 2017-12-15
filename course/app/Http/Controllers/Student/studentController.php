@@ -28,9 +28,6 @@ class studentController extends Controller
 
     public function photo(Request $request)
     {
-
-
-        // return $request->file('profile_photo');
         $this->validate($request, [
             'profile_photo' => 'image|required',
         ]);

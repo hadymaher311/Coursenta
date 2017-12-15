@@ -22,6 +22,7 @@ class CreateCoursesTable extends Migration
             $table->text('describtion');
             $table->integer('sessions_number');
             $table->integer('professor_id')->unsigned();
+            $table->boolean('verified')->default(0);
             $table->timestamps();
             $table->foreign('professor_id')->references('id')->on('professors')->onDelete('cascade')->onUpdate('cascade');
         });
