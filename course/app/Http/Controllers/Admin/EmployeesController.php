@@ -52,6 +52,7 @@ class EmployeesController extends Controller
             'position' => 'string|required',
             'salary' => 'numeric|required',
             'mobile'=> 'numeric|required',
+            'branch'=> 'numeric|required',
             'password'=> 'string|required|confirmed',
         ]);
 

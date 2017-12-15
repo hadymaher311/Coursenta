@@ -48,6 +48,8 @@ Route::group(['namespace' => 'Admin'],function(){
 	Route::GET('admin/new/employee', 'EmployeesController@show');
 	// add new employee
 	Route::POST('admin/new/employee', 'EmployeesController@store');
+	// admin controlls rooms routes
+	Route::resource('/admin/rooms', 'RoomsController');
 	// get admin login page
 	Route::GET('admin','LoginController@showLoginForm')->name('admin.login');
 	// login with admin
