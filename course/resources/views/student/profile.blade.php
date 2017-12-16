@@ -110,12 +110,6 @@
 				                        <input type="Email" id="form20" name="email" value="{{ Auth::user()->email }}" class="form-control">
 				                        <label for="form20">Email</label>
 				                    </div>
-
-				                     <div class="md-form form-sm">
-				                        <i class="fa fa-lock prefix"></i>
-				                        <input type="password" id="form19" name="password" value="{{ Auth::user()->password }}" class="form-control">
-				                        <label for="form21">Password</label>
-				                    </div>
 				    
 				                    <div class="md-form form-sm">
 				                        <i class="fa fa-tag prefix"></i>
@@ -136,10 +130,15 @@
 				                        <label for="form19">Address</label>
 				                    </div>
 				    
-				                    <div class="md-form form-sm">
+				                    <div class="md-form">
 				                        <i class="fa fa-pencil prefix"></i>
-				                        <input type="text" id="form21" name="date_of_birth" value="{{ Auth::user()->date_of_birth }}" class="form-control">
-				                        <label for="form23">Date Of Birth</label>
+				                        <input type="date" id="form21" name="date_of_birth" value="{{ Auth::user()->date_of_birth }}" class="form-control">
+				                    </div>
+
+				                    <div class="md-form form-sm">
+				                        <i class="fa fa-lock prefix"></i>
+				                        <input type="password" id="form19" name="password" value="" class="form-control">
+				                        <label for="form21">Password</label>
 				                    </div>
 				    
 				                    <div class="text-center mt-1-half">

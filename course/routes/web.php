@@ -57,6 +57,12 @@ Route::group(['namespace' => 'Admin'],function(){
 	Route::DELETE('/admin/rooms/{room}/delete/{branch}', 'RoomsController@destroy');
 	// admin controlls rooms routes
 	Route::resource('/admin/rooms', 'RoomsController');
+	// get Admins view for admin
+	Route::GET('admin/admins', 'AdminsController@index');
+	// add new admin Page
+	Route::GET('admin/new/admin', 'AdminsController@show');
+	// add new admin
+	Route::POST('admin/new/admin', 'AdminsController@store');
 	// get admin login page
 	Route::GET('admin','LoginController@showLoginForm')->name('admin.login');
 	// login with admin

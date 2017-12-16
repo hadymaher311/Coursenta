@@ -51,7 +51,7 @@
 					
                     <div class="form-check wow fadeInLeft" data-wow-delay="1.5s">
 					    <label class="form-check-label">
-					      <input type="checkbox" class="form-check-input" {{ old('remember') ? 'checked' : '' }}>
+					      <input type="checkbox" name="remember" class="form-check-input" {{ old('remember') ? 'checked' : '' }}>
 					      Remember Me
 					    </label>
 					  </div>

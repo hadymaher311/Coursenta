@@ -34,6 +34,7 @@
         <li><a href="{{ url('admin/professors') }}"><i class="fa fa-circle-o text-aqua"></i> <span>Professors</span></a></li>
         <li><a href="{{ url('admin/employees') }}"><i class="fa fa-circle-o text-green"></i> <span>Employees</span></a></li>
         <li><a href="{{ url('admin/rooms') }}"><i class="fa fa-circle-o text-blue"></i> <span>Rooms</span></a></li>
+        <li><a href="{{ url('admin/admins') }}"><i class="fa fa-circle-o text-purple"></i> <span>Admins</span></a></li>
       </ul>
     </section>
     <!-- /.sidebar -->
