@@ -63,6 +63,18 @@ Route::group(['namespace' => 'Admin'],function(){
 	Route::GET('admin/new/admin', 'AdminsController@show');
 	// add new admin
 	Route::POST('admin/new/admin', 'AdminsController@store');
+	// get Branches view for admin
+	Route::GET('admin/branches', 'BranchesController@index');
+	// get page to add new branch
+	Route::GET('admin/branches/create', 'BranchesController@create');
+	// add new branch
+	Route::POST('admin/branches/create', 'BranchesController@store');
+	// admin updates branch data page
+	Route::GET('/admin/branches/{branch}/edit', 'BranchesController@edit');
+	// admin updates branch data
+	Route::PATCH('/admin/branches/{branch}/edit/', 'BranchesController@update');
+	// admin deletes branch data
+	Route::DELETE('/admin/branches/{branch}/delete/', 'BranchesController@destroy');
 	// get admin login page
 	Route::GET('admin','LoginController@showLoginForm')->name('admin.login');
 	// login with admin

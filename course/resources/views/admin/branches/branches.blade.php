@@ -1,7 +1,7 @@
 @extends('admin.layouts.app')
 
 @section('title')
-Admins
+Branches
 @endsection
 
 @section('head')
@@ -15,7 +15,7 @@ Admins
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Admins
+        Branches
       </h1>
     </section>
 	<section class="content">
@@ -23,8 +23,8 @@ Admins
 	        <div class="col-xs-12">
     			<div class="box">
 	            <div class="box-header">
-	              <h3 class="box-title">Admins Table</h3>
-	              <a type="button" href="{{ url('admin/new/admin') }}" class="btn btn-success btn-flat pull-right">Add New Admin</a>
+	              <h3 class="box-title">Branches Table</h3>
+	              <a type="button" href="{{ url('admin/branches/create') }}" class="btn btn-success btn-flat pull-right">Add New Branch</a>
 	            </div>
 	            <!-- /.box-header -->
 	            <div class="box-body">
@@ -37,31 +37,46 @@ Admins
 	                <thead>
 	                <tr>
 	                  <th>#</th>
-	                  <th>Username</th>
-	                  <th>Email</th>
-	                  <th>Mobile</th>
-	                  <th>Verified</th>
+	                  <th>name</th>
+	                  <th>address</th>
+	                  <th>Capacity</th>
+	                  <th>mobile_number</th>
+	                  <th>Actions</th>
 	                  <th>Added From</th>
 	                </tr>
 	                </thead>
 
 	                <tbody>
 
-	                @foreach ($admins as $admin)
+	                @foreach ($branches as $branch)
 	                	<tr>
-	                		<?php $admin = (object)$admin; ?>
+	                		<?php $branch = (object)$branch; ?>
 	                		<td>{{ $loop->index + 1 }}</td>
-	                		<td>{{ $admin->username }}</td>
-	                		<td>{{ $admin->email }}</td>
-	                		<td>{{ $admin->mobile_number }}</td>
-	                		<td>
-	                			@if ($admin->status == 0)
-									<button class="btn btn-danger btn-sm">Not Verified</button>
-								@else
-									<button class="btn btn-success btn-sm">Verified</button>
-	                			@endif
-	                		</td>
-	                		<td>{{ Carbon\Carbon::createFromTimestamp(strtotime($admin->created_at))->diffForHumans() }}</td>
+	                		<td>{{ $branch->name }}</td>
+	                		<td>{{ $branch->address }}</td>
+	                		<td>{{ $branch->room_number }}</td>
+	                		<td>{{ $branch->mobile_number }}</td>
+
+							<td>
+								<a href="{{ url('/admin/branches/' . $branch->code . '/edit') }}" class="btn btn-primary btn-xs">Update</a>
+								
+								<form id="delete-{{ $branch->code }}" method="POST" action="{{ url('/admin/branches/' . $branch->code . '/delete') }}" style="display: none">
+	                                {{ csrf_field() }}
+	                                {{ method_field('DELETE') }}
+	                            </form>
+	                            <a class="btn btn-danger btn-xs" href="" onclick="
+	                              	if(confirm('Are you sure, You Want to delete this?'))
+	                                  {
+	                                    event.preventDefault();
+	                                    document.getElementById('delete-{{ $branch->code }}').submit();
+	                                  }
+	                                  else{
+	                                    event.preventDefault();
+	                                  }">Delete</a>
+
+							</td>
+
+	                		<td>{{ Carbon\Carbon::createFromTimestamp(strtotime($branch->created_at))->diffForHumans() }}</td>
 	                	</tr>
 	                @endforeach
 
@@ -70,10 +85,11 @@ Admins
 	                <tfoot>
 	                <tr>
 	                  <th>#</th>
-	                  <th>Username</th>
-	                  <th>Email</th>
-	                  <th>Mobile</th>
-	                  <th>Verified</th>
+	                  <th>name</th>
+	                  <th>address</th>
+	                  <th>Capacity</th>
+	                  <th>mobile_number</th>
+	                  <th>Actions</th>
 	                  <th>Added From</th>
 	                </tr>
 	                </tfoot>

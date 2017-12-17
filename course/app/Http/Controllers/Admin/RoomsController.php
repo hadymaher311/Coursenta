@@ -113,8 +113,11 @@ class RoomsController extends Controller
         $stmt = $con->prepare('SELECT * FROM rooms WHERE rooms.number = ? AND rooms.branch_code = ? LIMIT 1');
         $stmt->execute(array($room, $branch));
         $room = $stmt->fetch();
-        $room = (object) $room;
-        return view('admin.rooms.update', compact('room'));
+        if ($room) {
+            $room = (object) $room;
+            return view('admin.rooms.update', compact('room'));
+        }
+        return back();
     }
 
     /**
