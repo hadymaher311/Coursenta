@@ -61,7 +61,7 @@ Employees
 	                		<td>{{ $employee->salary }}</td>
 	                		<td>{{ $employee->address }}</td>
 	                		<td>{{ $employee->position }}</td>
-	                		<td>{{ Carbon\Carbon::createFromTimestampUTC(strtotime($employee->created_at))->diffForHumans() }}</td>
+	                		<td>{{ Carbon\Carbon::createFromTimestamp(strtotime($employee->created_at))->diffForHumans() }}</td>
 	                	</tr>
 	                @endforeach
 

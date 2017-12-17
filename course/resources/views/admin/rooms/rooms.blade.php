@@ -98,7 +98,7 @@ Rooms
 
 							</td>
 
-	                		<td>{{ Carbon\Carbon::createFromTimestampUTC(strtotime($room->created_at))->diffForHumans() }}</td>
+	                		<td>{{ Carbon\Carbon::createFromTimestamp(strtotime($room->created_at))->diffForHumans() }}</td>
 	                	</tr>
 	                @endforeach
 

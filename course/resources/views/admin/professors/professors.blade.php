@@ -59,7 +59,7 @@ Professors
 	                		<td>{{ $professor->mobile_number }}</td>
 	                		<td>{{ $professor->field }}</td>
 	                		<td>{{ $professor->address }}</td>
-	                		<td>{{ Carbon\Carbon::createFromTimestampUTC(strtotime($professor->created_at))->diffForHumans() }}</td>
+	                		<td>{{ Carbon\Carbon::createFromTimestamp(strtotime($professor->created_at))->diffForHumans() }}</td>
 	                	</tr>
 	                @endforeach
 

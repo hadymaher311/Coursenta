@@ -54,7 +54,7 @@ Courses
 	                		<td>{{ $course->describtion }}</td>
 	                		<td>{{ $course->sessions_number }}</td>
 	                		<td>{{ $course->professor_name }}</td>
-	                		<td>{{ Carbon\Carbon::createFromTimestampUTC(strtotime($course->created_at))->diffForHumans() }}</td>
+	                		<td>{{ Carbon\Carbon::createFromTimestamp(strtotime($course->created_at))->diffForHumans() }}</td>
 	                		<td>
 	                			@if ($course->verified == 0)
 									<form action="{{ url('/admin/courses/verify/' . $course->code) }}" method="POST">

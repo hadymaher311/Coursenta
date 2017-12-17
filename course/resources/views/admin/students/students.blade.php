@@ -56,7 +56,7 @@ Students
 	                		<td>{{ $student->school }}</td>
 	                		<td>{{ $student->date_of_birth }}</td>
 	                		<td>{{ $student->address }}</td>
-	                		<td>{{ Carbon\Carbon::createFromTimestampUTC(strtotime($student->created_at))->diffForHumans() }}</td>
+	                		<td>{{ Carbon\Carbon::createFromTimestamp(strtotime($student->created_at))->diffForHumans() }}</td>
 	                		<td>
 	                			@if ($student->status == 0)
 									<button class="btn btn-danger btn-sm">Not Verified</button>
