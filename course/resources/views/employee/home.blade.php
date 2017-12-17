@@ -4,6 +4,13 @@
     Employee Home Page
 @endsection
 
+@section('head')
+
+<!-- bootstrap datepicker -->
+<link rel="stylesheet" href="{{ asset('/employee_style/css/datepicker3.css') }}">
+
+@endsection
+
 @section('content')
 <!-- Site wrapper -->
 <div class="wrapper">
@@ -19,6 +26,39 @@
     <!-- Main content -->
     <section class="content">
 
+        @if (session('status'))
+            <div class="alert alert-success">
+                {{ session('status') }}
+            </div>
+        @endif
+
+        <form action="{{ url('employee/timetable') }}" method="POST">
+            {{ csrf_field() }}
+            <div class="row">
+            <!-- Date -->
+              <div class="form-group col-sm-6">
+                <label>Date:</label>
+
+                <div class="input-group date">
+                  <div class="input-group-addon">
+                    <i class="fa fa-calendar"></i>
+                  </div>
+                  <input type="text" class="form-control pull-right" name="date" id="datepicker">
+                </div>
+                <!-- /.input group -->
+              </div>
+              <!-- /.form group -->
+                <div class="form-group col-sm-6">
+                    <label></label>
+                    <div class="input-group">
+                        <button class="btn bg-purple">Get Timetable</button>
+                        <a href="{{ url('/employee/new/timetable') }}" class="btn btn-success pull-right btn-flat" style="margin-left: 20px;">Add New Reservation</a>
+                    </div>
+                </div>
+          </div>
+      </form>
+
+
       <!-- row -->
       <div class="row">
         <div class="col-md-12">
@@ -27,70 +67,29 @@
             <!-- timeline time label -->
             <li class="time-label">
                   <span class="bg-red">
-                    10 Feb. 2014
+                    @if (empty($timetables))
+                        {{ $thisDate->toFormattedDateString() }}    
+                    @else
+                        {{ \Carbon\Carbon::createFromTimestamp(strtotime($timetables[0]['start_date']))->toFormattedDateString() }}
+                    @endif
                   </span>
             </li>
             <!-- /.timeline-label -->
+            @foreach ($timetables as $timetable)
+            <?php $timetable = (object) $timetable; ?>
             <!-- timeline item -->
             <li>
-              <i class="fa fa-envelope bg-blue"></i>
+              <i class="fa fa-calendar bg-purple"></i>
 
               <div class="timeline-item">
-                <span class="time"><i class="fa fa-clock-o"></i> 12:05</span>
+                <span class="time"><i class="fa fa-clock-o"></i> to {{ \Carbon\Carbon::createFromTimestamp(strtotime($timetable->end_date))->toTimeString() }}</span>
+                <span class="time"><i class="fa fa-clock-o"></i> From {{ \Carbon\Carbon::createFromTimestamp(strtotime($timetable->start_date))->toTimeString() }}</span>
 
-                <h3 class="timeline-header"><a href="#">Support Team</a> sent you an email</h3>
-
-                <div class="timeline-body">
-                  Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles,
-                  weebly ning heekya handango imeem plugg dopplr jibjab, movity
-                  jajah plickers sifteo edmodo ifttt zimbra. Babblely odeo kaboodle
-                  quora plaxo ideeli hulu weebly balihoo...
-                </div>
-                <div class="timeline-footer">
-                  <a class="btn btn-primary btn-xs">Read more</a>
-                  <a class="btn btn-danger btn-xs">Delete</a>
-                </div>
+                <h3 class="timeline-header no-border"><strong>Room {{ $timetable->room_number }}</strong> has <strong>{{ $timetable->course_name }}</strong> Course</h3>
               </div>
             </li>
             <!-- END timeline item -->
-            <!-- timeline item -->
-            <li>
-              <i class="fa fa-user bg-aqua"></i>
-
-              <div class="timeline-item">
-                <span class="time"><i class="fa fa-clock-o"></i> 5 mins ago</span>
-
-                <h3 class="timeline-header no-border"><a href="#">Sarah Young</a> accepted your friend request</h3>
-              </div>
-            </li>
-            <!-- END timeline item -->
-            <!-- timeline item -->
-            <li>
-              <i class="fa fa-comments bg-yellow"></i>
-
-              <div class="timeline-item">
-                <span class="time"><i class="fa fa-clock-o"></i> 27 mins ago</span>
-
-                <h3 class="timeline-header"><a href="#">Jay White</a> commented on your post</h3>
-
-                <div class="timeline-body">
-                  Take me to your leader!
-                  Switzerland is small and neutral!
-                  We are more like Germany, ambitious and misunderstood!
-                </div>
-                <div class="timeline-footer">
-                  <a class="btn btn-warning btn-flat btn-xs">View comment</a>
-                </div>
-              </div>
-            </li>
-            <!-- END timeline item -->
-            <!-- timeline time label -->
-            <li class="time-label">
-                  <span class="bg-green">
-                    3 Jan. 2014
-                  </span>
-            </li>
-            <!-- /.timeline-label -->
+            @endforeach
 
             <li>
               <i class="fa fa-clock-o bg-gray"></i>
@@ -114,4 +113,16 @@
   <div class="control-sidebar-bg"></div>
 </div>
 <!-- ./wrapper -->
+@endsection
+
+@section('footer')
+<!-- bootstrap datepicker -->
+<script src="{{ asset('/employee_style/js/bootstrap-datepicker.js') }}"></script>
+<script>
+    //Date picker
+    $('#datepicker').datepicker({
+      autoclose: true
+    });
+</script>
+
 @endsection

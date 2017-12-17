@@ -99,6 +99,12 @@ Route::group(['namespace' => 'Professor'],function(){
 Route::group(['namespace' => 'Employee'],function(){
 	// get employee homepage
 	Route::GET('employee/home', 'employeeController@index');
+	// employee get timetable for specific date
+	Route::POST('employee/timetable', 'employeeController@timetable');
+	// get page to add new reservation
+	Route::GET('/employee/new/timetable', 'employeeController@show');
+	// add new reservation
+	Route::POST('/employee/new/timetable', 'employeeController@store');
 	// get employee login page
 	Route::GET('employee','LoginController@showLoginForm')->name('employee.login');
 	// login with employee
