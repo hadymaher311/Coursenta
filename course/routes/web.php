@@ -1,9 +1,7 @@
 <?php
 
 // Website Home Page
-Route::get('/', function () {
-    return view('homepage');
-});
+Route::get('/', 'HomeController@index');
 
 
 // Student Auth routes
@@ -20,6 +18,12 @@ Route::group(['namespace' => 'Student'],function(){
 	Route::post('/student/update', 'studentController@update_info');
 	Route::get('/student/coursesview', 'studentController@courseview');
 	Route::get('/course/{id}', 'studentController@commentview');
+	// student enrolls to course
+	Route::GET('/student/enroll/{course}', 'studentController@enroll');
+	// student unenrolls to course
+	Route::GET('/student/unenroll/{course}', 'studentController@unenroll');
+	// student comments to course
+	Route::POST('/student/comment/{course}', 'studentController@comment');
 });
 
 // Admin routes

@@ -1,4 +1,4 @@
-  <footer class="text-center text-white bg-purple pt-3 pb-3">CopyRight &copy; 2017, Coursenta</footer>
+  <footer class="text-center text-white bg-purple pt-3 pb-3">Copyright &copy; {{ \Carbon\Carbon::now()->year }} Coursenta</footer>
 
 </div>
 
