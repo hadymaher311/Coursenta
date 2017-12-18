@@ -24,6 +24,6 @@ class professorController extends Controller
      */
     public function index()
     {
-        return view('professor.home');
+        return view('professor.profile');
     }
 }
