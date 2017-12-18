@@ -76,7 +76,7 @@ class studentController extends Controller
         $con = DB::connection()->getPdo();
         $stmt = $con->prepare('UPDATE students SET username = ?,name = ? , email = ?,mobile_number = ?,school = ?,address = ?,date_of_birth = ?,password = ? WHERE id = ? ');
         $stmt->execute(array($request->username, $request->name, $request->email,$request->mobile_number,$request->school ,$request->address ,$request->date_of_birth ,Hash::make($request->password), Auth::id())); 
-        $this->index();       
+           
         return back();
     }
 }
