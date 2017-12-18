@@ -81,8 +81,8 @@ class BranchesController extends Controller
 			'room_number' => 'required|numeric',
 		]);
 		$con = DB::connection()->getPdo();
-		$stmt = $con->prepare('UPDATE branches SET name = ?, address = ?, mobile_number = ?, room_number = ? WHERE branches.code = ?');
-    	$stmt->execute(array($request->name, $request->address, $request->mobile_number, $request->room_number, $branch));
+		$stmt = $con->prepare('UPDATE branches SET name = ?, address = ?, mobile_number = ?, room_number = ?, updated_at = ? WHERE branches.code = ?');
+    	$stmt->execute(array($request->name, $request->address, $request->mobile_number, $request->room_number, Carbon::now(), $branch));
     	if ($stmt) {
 	        return redirect('admin/branches')->with('status', 'Updated Successfully');
     	} else {

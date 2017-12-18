@@ -111,12 +111,24 @@ Route::group(['namespace' => 'Professor'],function(){
 Route::group(['namespace' => 'Employee'],function(){
 	// get employee homepage
 	Route::GET('employee/home', 'employeeController@index');
+	// get employee profile
+	Route::GET('employee/profile', 'employeeController@profile');
+	// Change employee photo
+	Route::POST('employee/photo', 'employeeController@photo');
+	// update employee data
+	Route::POST('employee/update', 'employeeController@update');
 	// employee get timetable for specific date
 	Route::POST('employee/timetable', 'employeeController@timetable');
 	// get page to add new reservation
 	Route::GET('/employee/new/timetable', 'employeeController@show');
 	// add new reservation
 	Route::POST('/employee/new/timetable', 'employeeController@store');
+	// get page to employee to edit a reservation
+	Route::GET('/employee/timetable/{timetable}/edit', 'employeeController@edit');
+	// edit reservation
+	Route::PATCH('/employee/timetable/{timetable}/edit', 'employeeController@update_reservation');
+	// delete reservation
+	Route::DELETE('/employee/timetable/{timetable}/delete', 'employeeController@destroy');
 	// get employee login page
 	Route::GET('employee','LoginController@showLoginForm')->name('employee.login');
 	// login with employee
