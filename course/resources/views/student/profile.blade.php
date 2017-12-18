@@ -198,9 +198,13 @@
 
 		                    <!--Label-->
 		                    <div class="label">
-		                        <img src="{{ asset('/images/team2.jpg') }}" class="rounded-circle z-depth-1-half">
+		                        <img src="@if (Auth::user()->image == '')
+		                        	{{ asset('/images/student_default.jpg') }}
+		                        @else
+		                        {{ Storage::disk('local')->url(Auth::user()->image) }}
+		                        @endif" class="rounded-circle z-depth-1-half">
 		                    </div>
-
+	
 		                    <!--Excert-->
 		                    <div class="excerpt media-body">
 

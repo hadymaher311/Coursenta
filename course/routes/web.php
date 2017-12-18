@@ -129,6 +129,18 @@ Route::group(['namespace' => 'Employee'],function(){
 	Route::PATCH('/employee/timetable/{timetable}/edit', 'employeeController@update_reservation');
 	// delete reservation
 	Route::DELETE('/employee/timetable/{timetable}/delete', 'employeeController@destroy');
+	// get students for employee
+	Route::GET('/employee/students', 'StudentsController@index');
+	// get the page to employee to add new students
+	Route::GET('/employee/students/new', 'StudentsController@create');
+	// add new student
+	Route::POST('/employee/students/new', 'StudentsController@store');
+	// get rooms for employee
+	Route::GET('/employee/rooms', 'RoomsController@index');
+	// employee updates room data page
+	Route::GET('/employee/rooms/{room}/edit', 'RoomsController@edit');
+	// employee updates room data
+	Route::PATCH('/employee/rooms/{room}/edit', 'RoomsController@update');
 	// get employee login page
 	Route::GET('employee','LoginController@showLoginForm')->name('employee.login');
 	// login with employee
