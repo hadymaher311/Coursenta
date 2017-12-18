@@ -73,6 +73,14 @@ class RoomsController extends Controller
             'projector' => 'required|boolean',
         ]);
         $con = DB::connection()->getPdo();
+
+        $stmt = $con->prepare('SELECT branches.code FROM branches WHERE branches.code = ? AND branches.room_number = (SELECT COUNT(rooms.number) FROM branches, rooms WHERE rooms.branch_code = branches.code AND branches.code = ?)');
+        $stmt->execute(array($request->branch, $request->branch));
+        $row = $stmt->fetch();
+        if ($row) {
+            return back()->with('error', 'This branch has max room number');
+        }
+
         $stmt = $con->prepare('INSERT INTO rooms (number, branch_code, capacity, AC, projector, created_at, updated_at) VALUES (:number, :branch_code, :capacity, :AC, :projector, :created_at, :updated_at)');
         $stmt->execute(array(
             ':number' => $request->number, 

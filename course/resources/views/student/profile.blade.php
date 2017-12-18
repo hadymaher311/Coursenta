@@ -199,16 +199,20 @@
 
 		                    <!--Label-->
 		                    <div class="label">
-		                        <img src="{{ asset('/images/team2.jpg') }}" class="rounded-circle z-depth-1-half">
+		                        <img src="@if (Auth::user()->image == '')
+		                        	{{ asset('/images/student_default.jpg') }}
+		                        @else
+		                        {{ Storage::disk('local')->url(Auth::user()->image) }}
+		                        @endif" class="rounded-circle z-depth-1-half">
 		                    </div>
-
+	
 		                    <!--Excert-->
 		                    <div class="excerpt media-body">
 
 		                        <!--Brief-->
 		                        <div class="brief">
 		                            <a href="#" class="name">{{ Auth::user()->name }}</a> commented on {{ $comment->name }}
-		                            <div class="date">{{ Carbon\Carbon::createFromTimestampUTC(strtotime($comment->updated_at))->diffForHumans() }}</div>
+		                            <div class="date">{{ Carbon\Carbon::createFromTimestamp(strtotime($comment->updated_at))->diffForHumans() }}</div>
 		                        </div>
 
 		                        <!--Added text-->

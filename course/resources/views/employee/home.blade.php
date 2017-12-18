@@ -32,6 +32,12 @@
             </div>
         @endif
 
+        @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
+
         <form action="{{ url('employee/timetable') }}" method="POST">
             {{ csrf_field() }}
             <div class="row">
@@ -86,6 +92,23 @@
                 <span class="time"><i class="fa fa-clock-o"></i> From {{ \Carbon\Carbon::createFromTimestamp(strtotime($timetable->start_date))->toTimeString() }}</span>
 
                 <h3 class="timeline-header no-border"><strong>Room {{ $timetable->room_number }}</strong> has <strong>{{ $timetable->course_name }}</strong> Course</h3>
+                <div class="timeline-body">
+                  <a href="{{ url('/employee/timetable/' . $timetable->id . '/edit') }}" class="btn btn-primary btn-xs">Update</a>
+
+                  <form id="delete-{{ $timetable->id }}" method="POST" action="{{ url('/employee/timetable/' . $timetable->id . '/delete') }}" style="display: none">
+                      {{ csrf_field() }}
+                      {{ method_field('DELETE') }}
+                  </form>
+                  <a class="btn btn-danger btn-xs" href="" onclick="
+                    if(confirm('Are you sure, You Want to delete this?'))
+                      {
+                        event.preventDefault();
+                        document.getElementById('delete-{{ $timetable->id }}').submit();
+                      }
+                      else{
+                        event.preventDefault();
+                      }">Delete</a>
+                </div>
               </div>
             </li>
             <!-- END timeline item -->

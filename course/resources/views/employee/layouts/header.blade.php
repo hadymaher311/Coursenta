@@ -27,7 +27,7 @@
         @else
         {{ Storage::disk('local')->url(Auth::user()->image) }}
               @endif" class="user-image" alt="User Image">
-              <span class="hidden-xs">{{ Auth::user()->username }}</span>
+              <span class="hidden-xs">{{ Auth::user()->name }}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
@@ -39,7 +39,7 @@
               @endif" class="img-circle" alt="User Image">
 
                 <p>
-                  {{ Auth::user()->username }}
+                  {{ Auth::user()->name }}
                 </p>
               </li>
               <!-- Menu Footer-->
