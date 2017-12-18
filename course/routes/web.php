@@ -48,6 +48,8 @@ Route::group(['namespace' => 'Admin'],function(){
 	Route::GET('admin/new/professor', 'ProfessorsController@show');
 	// add new professor
 	Route::POST('admin/new/professor', 'ProfessorsController@store');
+	// get professor stats
+	Route::POST('/admin/professor/stats', 'ProfessorsController@stats');
 	// get students view for admin
 	Route::GET('admin/students', 'StudentsController@index');
 	// get Employees view for admin

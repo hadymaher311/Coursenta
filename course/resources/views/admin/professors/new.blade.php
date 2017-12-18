@@ -5,7 +5,7 @@ New Professor
 @endsection
 
 @section('head')
-	<link rel="stylesheet" href="{{ asset('/admin_style/css/dataTables.bootstrap.css') }}">
+
 @endsection
 
 @section('content')

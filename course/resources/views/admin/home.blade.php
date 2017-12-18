@@ -17,6 +17,22 @@
       </h1>
     </section>
 
+    <form action="{{ url('/admin/professor/stats') }}" method="POST" class="inline-form">
+      {{ csrf_field() }}
+      <div class="form-group">
+        <div class="col-sm-9">
+          <select class="form-control" name="professor" required>
+            <option value="">Choose Professor</option>
+            @foreach ($professors as $professor)
+              <?php $professor = (object)$professor; ?>
+              <option value="{{ $professor->id }}">{{ $professor->name }}</option>
+            @endforeach
+          </select>
+        </div>
+      </div>
+      <button class="btn btn-primary btn-flat">Get professor stats</button>
+    </form>
+
     <!-- Main content -->
     <section class="content">
 
@@ -173,3 +189,9 @@
 </div>
 <!-- ./wrapper -->
 @endsection
+
+@section('footer')
+
+
+@endsection
+

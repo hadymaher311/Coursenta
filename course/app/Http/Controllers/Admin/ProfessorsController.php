@@ -76,4 +76,34 @@ class ProfessorsController extends Controller
     	}
 	}
 
+    // get professor stats
+    public function stats(Request $request)
+    {
+        $this->validate($request, [
+            'professor' => 'numeric|required',
+        ]);
+        $con = DB::connection()->getPdo();
+        $stmt = $con->prepare('SELECT * FROM courses WHERE courses.professor_id = ? ORDER BY courses.code DESC');
+        $stmt->execute(array($request->professor));
+        $courses = $stmt->fetchAll();
+
+        $students = array();
+        foreach ($courses as $course) {
+            $stmt = $con->prepare('SELECT COUNT(attends.student_id) as students FROM attends WHERE attends.course_code = ? GROUP BY attends.course_code ORDER BY attends.course_code DESC');
+            $stmt->execute(array($course['code']));
+            // echo $stmt->fetch();
+            array_push($students, $stmt->fetch());
+        }
+
+        $stmt = $con->prepare('SELECT * FROM professors');
+        $stmt->execute();
+        $professors = $stmt->fetchAll();
+
+        $stmt = $con->prepare('SELECT professors.name FROM professors WHERE professors.id = ?');
+        $stmt->execute(array($request->professor));
+        $professor = $stmt->fetch();
+
+        return view('admin.professors.stats', compact('courses', 'students', 'professors', 'professor'));
+    }
+
 }

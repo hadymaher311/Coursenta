@@ -47,7 +47,13 @@ class adminController extends Controller
             $stmt->execute();
             array_push($comments, $stmt->fetchAll());
         }
-        return view('admin.home', compact('courses_count', 'professors_count', 'students_count', 'employees_count', 'courses', 'comments'));
+
+        $con = DB::connection()->getPdo();
+        $stmt = $con->prepare('SELECT professors.id, professors.name FROM professors');
+        $stmt->execute();
+        $professors = $stmt->fetchAll();
+
+        return view('admin.home', compact('courses_count', 'professors_count', 'students_count', 'employees_count', 'courses', 'comments', 'professors'));
     }
 
     // get count of table with column
