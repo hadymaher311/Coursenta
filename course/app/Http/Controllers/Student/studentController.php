@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
 
@@ -158,6 +159,37 @@ class studentController extends Controller
         } else {
             return back()->with('error', 'There is Some Errors');
         }
+
+    }
+
+
+    private $subject = '';
+    // send Email to center 
+    public function sendEmail(Request $request)
+    {
+        $this->validate($request, [
+            'subject' => 'string|required',
+            'message' => 'string|required',
+        ]);
+
+        $file = fopen("../resources/views/test.blade.php","w");
+        $txt = 'Student ' . Auth::user()->name . ' Says ';
+        fwrite($file,$txt . $request->message);
+        fclose($file);
+
+        $this->subject = $request->subject;
+
+        
+        Mail::send(['text' => 'test'], ['name' => Auth::user()->name], function($message) {
+            $message->to('databasepro31@gmail.com', 'to Coursenta')->subject($this->subject);
+            $message->from(Auth::user()->email, Auth::user()->name);
+        });
+
+        if (Mail::failures()) {
+            return back()->with('error', 'Some errors occurs');
+        }
+
+        return back()->with('status', 'Send Successfully!');
 
     }
 

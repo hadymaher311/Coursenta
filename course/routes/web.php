@@ -24,6 +24,8 @@ Route::group(['namespace' => 'Student'],function(){
 	Route::GET('/student/unenroll/{course}', 'studentController@unenroll');
 	// student comments to course
 	Route::POST('/student/comment/{course}', 'studentController@comment');
+	// send email to center
+	Route::POST('/student/sendEmail', 'studentController@sendEmail');
 });
 
 // Admin routes

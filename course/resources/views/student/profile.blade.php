@@ -27,6 +27,12 @@
 
 @section('body')
 	<div class="container">
+		@if (session('error'))
+			<div class="card-header bg-danger text-white">{{ session('error') }}</div>
+		@endif
+		@if (session('status'))
+			<div class="card-header bg-success text-white">{{ session('status') }}</div>
+		@endif
 		@if ($errors->any())
 		    <div class="alert alert-danger">
 		        <ul>
@@ -80,7 +86,15 @@
 				    <h5 class="card-title"><strong>Date of Birth:</strong> {{ Auth::user()->date_of_birth }}</h5>
 				  </div>
 
-					<a class="btn btn-purple" data-toggle="modal" data-target="#exampleModal">Edit Profile</a>
+					
+				<div class="row">
+					<div class="col-sm-6">
+						<a class="btn btn-purple" data-toggle="modal" data-target="#exampleModal">Edit Profile</a>
+					</div>
+					<div class="col-sm-6">
+						<a class="btn btn-primary" data-toggle="modal" data-target="#contactModal">Contact Center</a>
+					</div>
+				</div>
 					
 					<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					    <div class="modal-dialog modal-notify modal-primary" role="document">
@@ -237,6 +251,53 @@
 		</div>
 
 	</div>
+
+
+	<!--Modal: Contact form-->
+    <div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog cascading-modal" role="document">
+            <!--Content-->
+            <div class="modal-content">
+    
+                <!--Header-->
+                <div class="modal-header light-blue darken-3 white-text">
+                    <h4 class="title"><i class="fa fa-pencil"></i> Contact form</h4>
+                    <button type="button" class="close waves-effect waves-light" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <!--Body-->
+                <div class="modal-body mb-0">
+    
+    				<form action="{{ url('/student/sendEmail') }}" method="POST">
+    					{{ csrf_field() }}
+	                    <div class="md-form form-sm">
+	                        <i class="fa fa-tag prefix"></i>
+	                        <input type="text" id="form21" class="form-control" name="subject">
+	                        <label for="form21">Subject</label>
+	                    </div>
+	    
+	                    <div class="md-form form-sm">
+	                        <i class="fa fa-pencil prefix"></i>
+	                        <textarea type="text" id="form8" class="md-textarea mb-0" name="message"></textarea>
+	                        <label for="form8">Your message</label>
+	                    </div>
+	    
+	                    <div class="text-center mt-1-half">
+	                        <button class="btn btn-info mb-2">Send <i class="fa fa-send ml-1"></i></button>
+	                    </div>
+                    </form>
+    
+                </div>
+            </div>
+            <!--/.Content-->
+        </div>
+    </div>
+    <!--Modal: Contact form-->
+
+
+
+
 @endsection
 
 
