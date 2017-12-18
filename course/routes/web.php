@@ -18,7 +18,8 @@ Route::group(['namespace' => 'Student'],function(){
 	// change student profile photo
 	Route::post('/student/photo', 'studentController@photo');
 	Route::post('/student/update', 'studentController@update_info');
-
+	Route::get('/student/coursesview', 'studentController@courseview');
+	Route::get('/course/{id}', 'studentController@commentview');
 });
 
 // Admin routes

@@ -26,6 +26,23 @@ class studentController extends Controller
     	$comments = $stmt->fetchAll();
     	return view('student.profile', compact('courses', 'comments'));
     }
+     public function courseview()
+    {
+        $con = DB::connection()->getPdo();
+        $stmt=$con->prepare("SELECT courses.name,courses.code,courses.cost,courses.offer_cost ,professors.name as prof_name, professors.image as prof_image FROM professors,courses WHERE professors.id = courses.professor_id ");
+        $stmt->execute();
+        $courses = $stmt->fetchAll();
+        return view ('student.coursesview',compact('courses'));
+    }
+
+     public function commentview($id)
+    {
+         $con = DB::connection()->getPdo();
+        $stmt=$con->prepare("SELECT comments.*, students.name,students.image, courses.*, professors.name,professors.image FROM students,courses INNER JOIN comments ON comments.course_code = courses.code INNER JOIN professors ON courses.professor_id = professors.id WHERE students.id = comments.student_id AND courses.code = ?");
+        $stmt->execute(array($id));
+        $comments = $stmt->fetchAll();
+        return view ('student.commentsview',compact('comments'));
+    }
 
     public function photo(Request $request)
     {

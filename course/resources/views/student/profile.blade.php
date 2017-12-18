@@ -18,6 +18,7 @@
 		max-width: 70px;
 		margin-right: 20px;
 	}
+	
 
 </style>
 @section('head')
@@ -226,6 +227,7 @@
 
 
 			</div>
+			<a class="btn btn-purple"  class = "text-center mt-1-half" href="{{ url('/student/coursesview') }}" class="btn btn-primary btn-lg active " aria-pressed="true" >Other Courses</a>
 		</div>
 		</div>
 
