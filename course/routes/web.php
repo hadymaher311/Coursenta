@@ -110,6 +110,8 @@ Route::group(['namespace' => 'Professor'],function(){
 	Route::POST('professor-password/reset','ResetPasswordController@reset');
 	// get page where professor reset password
 	Route::GET('professor-password/reset/{token}','ResetPasswordController@showResetForm')->name('professor.password.reset');
+	Route::post('/professor/update', 'professorController@update_info');
+	Route::post('/professors/photo', 'professorController@photo');
 });
 
 // Employee routes

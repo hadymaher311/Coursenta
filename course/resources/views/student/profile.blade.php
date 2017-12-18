@@ -145,8 +145,9 @@
 				                    <div class="text-center mt-1-half">
 				                        <button type="submit" class="btn btn-purple mb-2">Update <i class="fa fa-send ml-1"></i></button>
 				                    </div>
+				                      </form>
 					            </div>
-					           </form>
+					         
 					        </div>
 					    </div>
 					</div>
