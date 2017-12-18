@@ -114,9 +114,9 @@
                 <div class="text-white text-center align-items-center rgba-black-strong py-5 px-4">
                     <div>
                         <h6 class="pink-text"><i class="fa fa-book"></i><strong> course</strong></h6>
-                        <h3 class="card-title py-3 font-bold"><strong>{{ $courses[0]['name'] }}</strong></h3>
-                        <p class="pb-3">{{ $courses[0]['describtion'] }}</p>
-                        <a href="{{ url('/course/' . $courses[0]['code']) }}" class="btn btn-pink btn-rounded"><i class="fa fa-clone left"></i> View course</a>
+                        <h3 class="card-title py-3 font-bold"><strong>{{ $courses[1]['name'] }}</strong></h3>
+                        <p class="pb-3">{{ $courses[1]['describtion'] }}</p>
+                        <a href="{{ url('/course/' . $courses[1]['code']) }}" class="btn btn-pink btn-rounded"><i class="fa fa-clone left"></i> View course</a>
                     </div>
                 </div>
             </div>
@@ -129,9 +129,9 @@
                 <div class="text-white text-center align-items-center rgba-black-strong py-5 px-4">
                     <div>
                         <h6 class="green-text"><i class="fa fa-book"></i><strong> course</strong></h6>
-                        <h3 class="card-title py-3 font-bold"><strong>{{ $courses[0]['name'] }}</strong></h3>
-                        <p class="pb-3">{{ $courses[0]['describtion'] }}</p>
-                        <a href="{{ url('/course/' . $courses[0]['code']) }}" class="btn btn-success btn-rounded"><i class="fa fa-clone left"></i> View course</a>
+                        <h3 class="card-title py-3 font-bold"><strong>{{ $courses[2]['name'] }}</strong></h3>
+                        <p class="pb-3">{{ $courses[2]['describtion'] }}</p>
+                        <a href="{{ url('/course/' . $courses[2]['code']) }}" class="btn btn-success btn-rounded"><i class="fa fa-clone left"></i> View course</a>
                     </div>
                 </div>
             </div>
