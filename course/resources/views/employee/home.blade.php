@@ -144,7 +144,8 @@
 <script>
     //Date picker
     $('#datepicker').datepicker({
-      autoclose: true
+      autoclose: true,
+      format: 'mm/dd/yyyy',
     });
 </script>
 

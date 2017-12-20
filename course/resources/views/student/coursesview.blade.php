@@ -25,7 +25,7 @@
 @section('body')
 	<div class="container">
 		<h2 class="text-center"><strong> Courses</strong></h2>
-		<div class="row">
+		<div class="row" id="demo">
 			@foreach( $courses as $course)
 			<?php $course = (object)$course; ?>
 			<div class="col-sm-3 ml-auto mr-auto mb-3">
@@ -59,6 +59,18 @@
 
 @section('footer')
 
-
+{{-- <script src="{{ asset('/js/pagination.min.js') }}"></script>
+<script>
+$(function () {
+	$('#demo').pagination({
+	    dataSource: [1, 2, 3, 4, 5, 6, 7,],
+	    callback: function(data, pagination) {
+	        // template method of yourself
+	        var html = template(data);
+	        dataContainer.html(html);
+	    }
+	})
+});
+</script> --}}
 
 @endsection

@@ -146,7 +146,7 @@
                   <div class="user-block">
                     <img class="img-circle" src="{{ asset('/images/team2.jpg') }}" alt="User Image">
                     <span class="username"><a href="{{ url('/professor') }}/{{ $course['prof_id'] }}">{{ $course['prof_name'] }}</a></span>
-                    <span class="description">{{ $course['course_name'] }} - {{ Carbon\Carbon::createFromTimestampUTC(strtotime($course['course_time']))->diffForHumans() }}</span>
+                    <span class="description">{{ $course['course_name'] }} - {{ Carbon\Carbon::createFromTimestamp(strtotime($course['course_time']))->diffForHumans() }}</span>
                   </div>
                   <!-- /.user-block -->
                   <div class="box-tools">
@@ -173,7 +173,7 @@
                         <div class="comment-text">
                               <span class="username">
                                 {{ $comment['name'] }}
-                                <span class="text-muted pull-right">{{ Carbon\Carbon::createFromTimestampUTC(strtotime($comment['updated_at']))->diffForHumans() }}</span>
+                                <span class="text-muted pull-right">{{ Carbon\Carbon::createFromTimestamp(strtotime($comment['updated_at']))->diffForHumans() }}</span>
                               </span><!-- /.username -->
                           {{ $comment['content'] }}
                         </div>
