@@ -33,4 +33,25 @@ class CoursesController extends Controller
     	$stmt->execute(array($id));
     	return back();
     }
+
+    // get course stats
+    public function stats(Request $request)
+    {
+        $con = DB::connection()->getPdo();
+        $stmt = $con->prepare('SELECT courses.code, courses.name FROM courses');
+        $stmt->execute();
+        $courses = $stmt->fetchAll();
+        
+        $stmt = $con->prepare('SELECT courses.name FROM courses WHERE courses.code = ?');
+        $stmt->execute(array($request->course));
+        $course = $stmt->fetch();
+        
+        $stmt = $con->prepare('SELECT students.name, COUNT(*) as comments_count FROM comments JOIN students ON student_id = students.id WHERE course_code = ? GROUP BY students.name');
+        $stmt->execute(array($request->course));
+        $data = $stmt->fetchAll();
+
+        // return $data;
+
+        return view('admin.courses.stats', compact('courses', 'course', 'data'));
+    }
 }

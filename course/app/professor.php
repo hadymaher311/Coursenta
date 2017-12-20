@@ -19,6 +19,11 @@ class Professor extends Authenticatable
         'name', 'username', 'email', 'password',
     ];
 
+    public function Course()
+    {
+        $this->hasOne('App\Course', 'code');
+    }
+
     /**
      * The attributes that should be hidden for arrays.
      *

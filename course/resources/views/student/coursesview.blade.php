@@ -28,14 +28,14 @@
 		<div class="row">
 			@foreach( $courses as $course)
 			<?php $course = (object)$course; ?>
-			<div class="col-sm-3 ml-auto mr-auto">
+			<div class="col-sm-3 ml-auto mr-auto mb-3">
 				<!--Card-->
 				<div class="card">
 
 				    <!--Card image-->
 				    <div class="view overlay hm-white-slight">
-				        <img src="https://mdbootstrap.com/img/Photos/Horizontal/Nature/4-col/img%20%287%29.jpg" class="img-fluid" alt="">
-				        <a href="#">
+				        <img src="https://www.internetacademy.co.in/courses/images/crs_customize.jpg" class="img-fluid" alt="">
+				        <a>
 				            <div class="mask"></div>
 				        </a>
 				    </div>

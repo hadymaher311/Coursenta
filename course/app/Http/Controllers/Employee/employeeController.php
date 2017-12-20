@@ -91,7 +91,7 @@ class employeeController extends Controller
         $con = DB::connection()->getPdo();
 
         // check on the inserted time not intersecting with any date for same room for the same branch
-        $stmt = $con->prepare('SELECT start_date,end_date FROM timetables WHERE branch_code = ? AND room_number = ?AND (start_date BETWEEN ? AND ? OR end_date BETWEEN ? AND ?)');
+        $stmt = $con->prepare('SELECT start_date,end_date FROM timetables WHERE branch_code = ? AND room_number = ? AND (start_date BETWEEN ? AND ? OR end_date BETWEEN ? AND ?)');
         $stmt->execute(array(
             Auth::user()->branch_code,
             $request->room,

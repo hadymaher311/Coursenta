@@ -45,23 +45,23 @@
 
         <div class="row">
             <div class="col-md-6">
-                <h1>{{ $comments[0]['course_name'] }}</h1> 
-                <div><span class="text-secondary">@if ($comments[0]['course_cost'] != $comments[0]['course_offer'] )
-                    <s>${{ $comments[0]['course_cost'] }}</s>
+                <h1>{{ $course['course_name'] }}</h1> 
+                <div><span class="text-secondary">@if ($course['course_cost'] != $course['course_offer'] )
+                    <s>${{ $course['course_cost'] }}</s>
                     @else
-                    ${{ $comments[0]['course_cost'] }}
-                @endif</span> @if ($comments[0]['course_cost'] != $comments[0]['course_offer'] )
-                    <span class="text-white">${{ $comments[0]['course_offer'] }}</span>
+                    ${{ $course['course_cost'] }}
+                @endif</span> @if ($course['course_cost'] != $course['course_offer'] )
+                    <span class="text-white">${{ $course['course_offer'] }}</span>
                 @endif</div>
-                <p>{{ $comments[0]['course_desc'] }}</p>
+                <p>{{ $course['course_desc'] }}</p>
                 <div class="text-secondary">
                     <i class="fa fa-comment-o" aria-hidden="true"></i> {{ count($comments) }} Comments 
                     <i class="fa fa-user-o" aria-hidden="true"></i> {{ $enrolls[0]['enrolls'] }} Enrolled Students
                 </div>
                 @if (empty($enrolled))
-                    <a href="{{ url('/student/enroll/' . $comments[0]['course_code']) }}" class="btn btn-purple btn-flat">Enroll</a>
+                    <a href="{{ url('/student/enroll/' . $course['course_code']) }}" class="btn btn-purple btn-flat">Enroll</a>
                 @else
-                    <a href="{{ url('/student/unenroll/' . $comments[0]['course_code']) }}" class="btn btn-danger btn-flat">Unenroll</a>
+                    <a href="{{ url('/student/unenroll/' . $course['course_code']) }}" class="btn btn-danger btn-flat">Unenroll</a>
                 @endif
             </div>
             
@@ -74,24 +74,24 @@
                     </div>
 
                     <!--Avatar-->
-                    <div class="avatar"><img style="max-width: 150px;" src="@if ($comments[0]['prof_image'] == '')
+                    <div class="avatar"><img style="max-width: 150px;" src="@if ($course['prof_image'] == '')
                         {{ asset('images/professor_default.png') }}
                         @else
-                        {{ Storage::disk('local')->url('$comments[0][\'prof_image\']') }}
+                        {{ Storage::disk('local')->url($course['prof_image']) }}
                     @endif" class="rounded-circle">
                     </div>
 
                     <div class="card-body">
                         <!--Name-->
-                        <h4 class="card-title">Professor: {{ $comments[0]['prof_name'] }}</h4>
+                        <h4 class="card-title">Professor: {{ $course['prof_name'] }}</h4>
                         <hr>
                         <!--Quotation-->
-                        <p><i class="fa fa-envelope-o"></i> {{ $comments[0]['prof_email'] }}</p>
-                        @if ($comments[0]['prof_mobile'] != '')
-                            <p><i class="fa fa-mobile"></i> {{ $comments[0]['prof_mobile'] }}</p>
+                        <p><i class="fa fa-envelope-o"></i> {{ $course['prof_email'] }}</p>
+                        @if ($course['prof_mobile'] != '')
+                            <p><i class="fa fa-mobile"></i> {{ $course['prof_mobile'] }}</p>
                         @endif
-                        @if ($comments[0]['prof_address'])
-                            <p><i class="fa fa-address-card-o"></i> {{ $comments[0]['prof_address'] }}</p>
+                        @if ($course['prof_address'])
+                            <p><i class="fa fa-address-card-o"></i> {{ $course['prof_address'] }}</p>
                         @endif
                     </div>
 
@@ -151,7 +151,7 @@
                 @auth
                  <!--Comment input-->
                 <div class="md-form">
-                    <form action="{{ url('/student/comment/' . $comments[0]['course_code']) }}" method="POST">
+                    <form action="{{ url('/student/comment/' . $course['course_code']) }}" method="POST">
                         {{ csrf_field() }}
                         <div class="avatar prefix mr-3"><img style="max-width: 40px;" src="@if (Auth::user()->image == '')
                             {{ asset('images/student_default.jpg') }}

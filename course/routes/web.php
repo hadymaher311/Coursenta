@@ -9,6 +9,8 @@ Auth::routes();
 // Student email verification
 Route::get('/varifiedEmailStu/{email}/{token}', 'Student\RegisterController@varefied')->name('varifiedEmailStu');
 
+Route::get('/course/{id}', 'HomeController@commentview');
+Route::get('/coursesview', 'HomeController@courseview');
 // Student routes
 Route::group(['namespace' => 'Student'],function(){
 	// get student homepage
@@ -17,7 +19,6 @@ Route::group(['namespace' => 'Student'],function(){
 	Route::post('/student/photo', 'studentController@photo');
 	Route::post('/student/update', 'studentController@update_info');
 	Route::get('/student/coursesview', 'studentController@courseview');
-	Route::get('/course/{id}', 'studentController@commentview');
 	// student enrolls to course
 	Route::GET('/student/enroll/{course}', 'studentController@enroll');
 	// student unenrolls to course
@@ -42,6 +43,8 @@ Route::group(['namespace' => 'Admin'],function(){
 	Route::GET('admin/courses', 'CoursesController@index');
 	// admin verify courses
 	Route::POST('admin/courses/verify/{id}', 'CoursesController@verify');
+	// get course stats
+	Route::POST('/admin/course/stats', 'CoursesController@stats');
 	// get professors view for admin
 	Route::GET('admin/professors', 'ProfessorsController@index');
 	// add new professor Page

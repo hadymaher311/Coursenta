@@ -17,6 +17,28 @@
       </h1>
     </section>
 
+  <div class="container">
+    <h4>Get Courses Stats</h4>
+  </div>
+    <form action="{{ url('/admin/course/stats') }}" method="POST" class="inline-form">
+      {{ csrf_field() }}
+      <div class="form-group">
+        <div class="col-sm-9">
+          <select class="form-control" name="course" required>
+            <option value="">Choose Course</option>
+            @foreach ($courses2 as $course)
+              <?php $course = (object)$course; ?>
+              <option value="{{ $course->code }}">{{ $course->name }}</option>
+            @endforeach
+          </select>
+        </div>
+      </div>
+      <button class="btn btn-primary btn-flat">Get course stats</button>
+    </form>
+
+  <div class="container">
+    <h4>Get Professors Stats</h4>
+  </div>
     <form action="{{ url('/admin/professor/stats') }}" method="POST" class="inline-form">
       {{ csrf_field() }}
       <div class="form-group">
