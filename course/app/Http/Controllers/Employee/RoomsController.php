@@ -72,4 +72,22 @@ class RoomsController extends Controller
         return back()->with('error', 'There is Some Errors');
     }
 
+
+    public function stats(Request $request)
+    {
+        $this->validate($request, [
+            'room' => 'exists:rooms,number',
+        ]);
+        $con = DB::connection()->getPdo();
+        $stmt = $con->prepare('SELECT timetables.id, timetables.start_date, timetables.end_date, courses.name, rooms.number FROM timetables, rooms, courses WHERE  timetables.course_code = courses.code AND timetables.room_number = rooms.number AND  timetables.room_number = ? AND rooms.branch_code = ?');
+        $stmt->execute(array($request->room, Auth::user()->branch_code));
+        $timetables = $stmt->fetchAll();
+
+        $stmt = $con->prepare('SELECT rooms.number FROM rooms WHERE rooms.branch_code = ? ');
+        $stmt->execute(array(Auth::user()->branch_code));
+        $rooms = $stmt->fetchAll();
+
+        return view('employee.rooms.stats', compact('timetables', 'rooms'));
+    }
+
 }

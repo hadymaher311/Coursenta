@@ -52,7 +52,7 @@ class adminController extends Controller
         $stmt->execute();
         $professors = $stmt->fetchAll();
 
-        $stmt = $con->prepare('SELECT courses.code, courses.name FROM courses');
+        $stmt = $con->prepare('SELECT courses.code, courses.name FROM courses WHERE courses.verified = 1');
         $stmt->execute();
         $courses2 = $stmt->fetchAll();
 

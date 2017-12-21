@@ -58,6 +58,20 @@
                     <i class="fa fa-comment-o" aria-hidden="true"></i> {{ count($comments) }} Comments 
                     <i class="fa fa-user-o" aria-hidden="true"></i> {{ $enrolls[0]['enrolls'] }} Enrolled Students
                 </div>
+                
+                <div class="text-secondary">
+                    @if (!empty($timetables))
+                        <h4 class="text-white">Appointments</h4>
+                    @endif
+                    @foreach ($timetables as $timetable)
+                    <?php $timetable = (object)$timetable; ?>
+                    <div>
+                        <span class="time"><i class="fa fa-clock-o"></i> From {{ \Carbon\Carbon::createFromTimestamp(strtotime($timetable->start_date))->toDayDateTimeString() }}</span>&nbsp;
+                        <span class="time"><i class="fa fa-clock-o"></i> to {{ \Carbon\Carbon::createFromTimestamp(strtotime($timetable->end_date))->toDayDateTimeString() }}</span>
+                    </div>
+                    @endforeach
+                </div>
+
                 @if (empty($enrolled))
                     <a href="{{ url('/student/enroll/' . $course['course_code']) }}" class="btn btn-purple btn-flat">Enroll</a>
                 @else

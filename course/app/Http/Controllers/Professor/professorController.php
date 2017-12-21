@@ -52,7 +52,7 @@ class professorController extends Controller
         return back();
     }
 
-      public function update_info(Request $request)
+    public function update_info(Request $request)
     {
         $this->validate($request, [
             'username'=> [

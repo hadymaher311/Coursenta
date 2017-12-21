@@ -35,8 +35,12 @@ class employeeController extends Controller
         $stmt = $con->prepare('SELECT timetables.*, courses.name as course_name FROM timetables,courses WHERE timetables.branch_code = ? AND timetables.start_date > ? AND timetables.end_date < ? AND timetables.course_code = courses.code');
         $stmt->execute(array(Auth::user()->branch_code, Carbon::today(), Carbon::tomorrow()));
         $timetables = $stmt->fetchAll();
+
+        $stmt = $con->prepare('SELECT rooms.number FROM rooms WHERE rooms.branch_code = ? ');
+        $stmt->execute(array(Auth::user()->branch_code));
+        $rooms = $stmt->fetchAll();
         $thisDate = Carbon::today();
-        return view('employee.home', compact('timetables', 'thisDate'));
+        return view('employee.home', compact('timetables', 'thisDate', 'rooms'));
     }
 
     public function timetable(Request $request)
@@ -48,14 +52,19 @@ class employeeController extends Controller
         $stmt = $con->prepare('SELECT timetables.*, courses.name as course_name FROM timetables,courses WHERE timetables.branch_code = ? AND timetables.start_date > ? AND timetables.end_date < ? AND timetables.course_code = courses.code');
         $stmt->execute(array(Auth::user()->branch_code, $date, $nextDate));
         $timetables = $stmt->fetchAll();
+
+        $stmt = $con->prepare('SELECT rooms.number FROM rooms WHERE rooms.branch_code = ? ');
+        $stmt->execute(array(Auth::user()->branch_code));
+        $rooms = $stmt->fetchAll();
+
         $thisDate = $date;
-        return view('employee.home', compact('timetables', 'thisDate'));
+        return view('employee.home', compact('timetables', 'thisDate' ,'rooms'));
     }
 
     public function show()
     {
         $con = DB::connection()->getPdo();
-        $stmt = $con->prepare('SELECT courses.code, courses.name FROM courses');
+        $stmt = $con->prepare('SELECT courses.code, courses.name FROM courses WHERE courses.verified = 1');
         $stmt->execute();
         $courses = $stmt->fetchAll();
         $stmt = $con->prepare('SELECT rooms.number FROM rooms WHERE rooms.branch_code = ?');
@@ -103,6 +112,31 @@ class employeeController extends Controller
         $row = $stmt->fetch();
         if ($row) {
             return back()->with('error', 'This room is not avialable');
+        }
+
+        // check on the inserted time not intersecting with any date for same room for the same branch
+        $stmt = $con->prepare('SELECT start_date,end_date FROM timetables WHERE branch_code = ? AND room_number = ? AND start_date > ? AND end_date < ?');
+        $stmt->execute(array(
+            Auth::user()->branch_code,
+            $request->room,
+            $start_date,
+            $end_date,
+        ));
+        $row = $stmt->fetch();
+        if ($row) {
+            return back()->with('error', 'This room is not avialable');
+        }
+
+        // check on the inserted time not intersecting with any date for same course
+        $stmt = $con->prepare('SELECT start_date,end_date FROM timetables WHERE course_code = ? AND start_date > ? AND end_date < ?');
+        $stmt->execute(array(
+            $request->course,
+            $start_date,
+            $end_date,
+        ));
+        $row2 = $stmt->fetch();
+        if ($row2) {
+            return back()->with('error', 'This course has same time');
         }
 
         // check on the inserted time not intersecting with any date for same course
@@ -187,7 +221,7 @@ class employeeController extends Controller
     public function edit($timetable)
     {
         $con = DB::connection()->getPdo();
-        $stmt = $con->prepare('SELECT courses.code, courses.name FROM courses');
+        $stmt = $con->prepare('SELECT courses.code, courses.name FROM courses WHERE courses.verified = 1');
         $stmt->execute();
         $courses = $stmt->fetchAll();
         $stmt = $con->prepare('SELECT rooms.number FROM rooms WHERE rooms.branch_code = ?');

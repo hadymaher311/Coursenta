@@ -37,6 +37,23 @@
                 {{ session('error') }}
             </div>
         @endif
+        
+            <h4>Get Rooms Stats</h4>
+            <form action="{{ url('/employee/room/stats') }}" method="POST" class="inline-form">
+              {{ csrf_field() }}
+              <div class="form-group">
+                <div class="col-sm-9">
+                  <select class="form-control" name="room" required>
+                    <option value="">Choose room</option>
+                    @foreach ($rooms as $room)
+                      <?php $room = (object)$room; ?>
+                      <option value="{{ $room->number }}">{{ $room->number }}</option>
+                    @endforeach
+                  </select>
+                </div>
+              </div>
+              <button class="btn btn-primary btn-flat">Get room stats</button>
+            </form>
 
         <form action="{{ url('employee/timetable') }}" method="POST">
             {{ csrf_field() }}

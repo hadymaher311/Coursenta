@@ -10,6 +10,7 @@ Admins
 
 @section('content')
 
+
 	<!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -94,6 +95,7 @@ Admins
     <strong>Copyright &copy; 2014-{{ Carbon\Carbon::now()->year }} <a href="{{ url('/') }}">{{ config('app.name') }}</a>.</strong> All rights
     reserved.
   </footer>
+
 
 @endsection
 

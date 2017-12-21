@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -84,6 +85,11 @@ class HomeController extends Controller
         $stmt->execute(array($id));
         $comments = $stmt->fetchAll();
 
+        // get the timetables on this course
+        $stmt = $con->prepare('SELECT timetables.start_date, timetables.end_date FROM timetables WHERE timetables.course_code = ? AND timetables.start_date > ?');
+        $stmt->execute(array($id, Carbon::today()));
+        $timetables = $stmt->fetchAll();
+
         // check if this student is enrolled
         $stmt = $con->prepare('SELECT * FROM attends WHERE attends.student_id = ? AND attends.course_code = ?');
         $stmt->execute(array(Auth::id(), $id));
@@ -94,6 +100,6 @@ class HomeController extends Controller
         $stmt->execute(array($id));
         $enrolls = $stmt->fetchAll();
         
-        return view ('student.commentsview',compact('comments', 'enrolled', 'enrolls', 'course'));
+        return view ('student.commentsview',compact('comments', 'enrolled', 'enrolls', 'course', 'timetables'));
     }
 }

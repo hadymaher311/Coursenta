@@ -163,6 +163,8 @@ Route::group(['namespace' => 'Employee'],function(){
 	Route::GET('/employee/rooms/{room}/edit', 'RoomsController@edit');
 	// employee updates room data
 	Route::PATCH('/employee/rooms/{room}/edit', 'RoomsController@update');
+	// get rooms stats
+	Route::POST('/employee/room/stats', 'RoomsController@stats');
 	// get employee login page
 	Route::GET('employee','LoginController@showLoginForm')->name('employee.login');
 	// login with employee

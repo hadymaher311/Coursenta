@@ -5,8 +5,6 @@
 @endsection
 
 @section('content')
-<!-- Site wrapper -->
-<div class="wrapper">
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -219,10 +217,6 @@
     reserved.
   </footer>
 
-
-  <div class="control-sidebar-bg"></div>
-</div>
-<!-- ./wrapper -->
 @endsection
 
 @section('footer')
