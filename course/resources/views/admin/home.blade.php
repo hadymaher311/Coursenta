@@ -55,6 +55,19 @@
       <button class="btn btn-primary btn-flat">Get professor stats</button>
     </form>
 
+    <div class="container">
+    <h4>Get Student Stats</h4>
+  </div>
+    <form action="{{ url('/admin/student/stats') }}" method="POST" class="inline-form">
+      {{ csrf_field() }}
+      <div class="form-group">
+        <div class="col-sm-9">
+          <input type="number" name="student" min="0" required class="form-control">
+        </div>
+      </div>
+      <button class="btn btn-primary btn-flat">Get student stats</button>
+    </form>
+
     <!-- Main content -->
     <section class="content">
 

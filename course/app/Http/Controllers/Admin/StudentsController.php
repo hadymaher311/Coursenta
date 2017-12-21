@@ -24,4 +24,18 @@ class StudentsController extends Controller
     	$students = $stmt->fetchAll();
     	return view('admin.students.students', compact('students'));
 	}
+
+	// get professor stats
+    public function stats(Request $request)
+    {
+        $this->validate($request, [
+            'student' => 'numeric|required',
+        ]);
+        $con = DB::connection()->getPdo();
+        $stmt = $con->prepare('SELECT students.name, COUNT(*) as comments_count FROM comments JOIN students ON student_id = students.id GROUP BY students.name ORDER BY COUNT(*) DESC LIMIT ?');
+        $stmt->execute(array($request->student));
+        $students = $stmt->fetchAll();
+
+        return view('admin.students.stats', compact('students'));
+    }
 }

@@ -76,11 +76,21 @@
 				    <h5 class="card-title"><strong>Address:</strong> {{ Auth::user()->address }}</h5>
 				  </div>
 				<div class="row">
-					<div class="col-sm-6">
+					<div class="col-sm-4">
 						<a class="btn btn-purple" data-toggle="modal" data-target="#EditModal">Edit Profile</a>
 					</div>
-					<div class="col-sm-6">
+					<div class="col-sm-4">
 						<a class="btn btn-primary" data-toggle="modal" data-target="#contactModal">Contact Center</a>
+					</div>
+					<div class="col-sm-4">
+						<a href="{{ route('logout') }}"  class="btn btn-danger btn-flat"
+                      onclick="event.preventDefault();
+                               document.getElementById('logout-form').submit();">
+	                      Logout
+	                  </a>
+	                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+	                      {{ csrf_field() }}
+	                  </form>
 					</div>
 				</div>
 					

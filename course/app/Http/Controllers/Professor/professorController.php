@@ -29,6 +29,8 @@ class professorController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    // get professor profile
     public function index()
     {
         $con = DB::connection()->getPdo();
@@ -133,7 +135,7 @@ class professorController extends Controller
             return back()->with('error', 'Some errors occurs');
         }
 
-        return back()->with('status', 'Send Successfully!');
+        return back()->with('status', 'Sent Successfully!');
 
     }
 

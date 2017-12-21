@@ -189,7 +189,7 @@ class studentController extends Controller
             return back()->with('error', 'Some errors occurs');
         }
 
-        return back()->with('status', 'Send Successfully!');
+        return back()->with('status', 'Sent Successfully!');
 
     }
 

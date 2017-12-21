@@ -2,17 +2,17 @@
 
 // Website Home Page
 Route::get('/', 'HomeController@index');
+Route::get('/course/{id}', 'HomeController@commentview');
+Route::get('/coursesview', 'HomeController@courseview');
 
 
 // Student Auth routes
 Auth::routes();
-// Student email verification
-Route::get('/varifiedEmailStu/{email}/{token}', 'Student\RegisterController@varefied')->name('varifiedEmailStu');
 
-Route::get('/course/{id}', 'HomeController@commentview');
-Route::get('/coursesview', 'HomeController@courseview');
 // Student routes
 Route::group(['namespace' => 'Student'],function(){
+	// Student email verification
+	Route::get('/varifiedEmailStu/{email}/{token}', 'RegisterController@varefied')->name('varifiedEmailStu');
 	// get student homepage
 	Route::get('/home', 'studentController@index')->name('home');
 	// change student profile photo
@@ -53,6 +53,8 @@ Route::group(['namespace' => 'Admin'],function(){
 	Route::POST('admin/new/professor', 'ProfessorsController@store');
 	// get professor stats
 	Route::POST('/admin/professor/stats', 'ProfessorsController@stats');
+	// get student stats
+	Route::POST('/admin/student/stats', 'StudentsController@stats');
 	// get students view for admin
 	Route::GET('admin/students', 'StudentsController@index');
 	// get Employees view for admin
